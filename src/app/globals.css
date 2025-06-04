@@ -1,21 +1,56 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --secondary: #64748b;
+  --accent: #3c83f6;
+  --text-heading: 2.25rem;
+  --text-heading--line-height: var(--text-4xl-line-height);
+  --text-heading--font-weight: 700;
+  --text-body: 1.125rem;
+  --text-body--line-height: var(--text-base-line-height);
+  --text-body--font-weight: 400;
+
+  --sh-class: #2d5e9d;
+  --sh-identifier: #354150;
+  --sh-sign: #8996a3;
+  --sh-property: #0550ae;
+  --sh-entity: #249a97;
+  --sh-jsxliterals: #6266d1;
+  --sh-string: #00a99a;
+  --sh-keyword: #f47067;
+  --sh-comment: #a19595;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-work-sans);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  --text-heading: var(--text-heading);
+  --text-heading--line-height: var(--text-heading--line-height);
+  --text-heading--font-weight: var(--text-heading--font-weight);
+  --text-body: var(--text-body);
+  --text-body--line-height: var(--text-body--line-height);
+  --text-body--font-weight: var(--text-body--font-weight);
+
+  --text-notes-h2: var(--text-2xl);
+  --text-notes-h3: var(--text-xl);
+  --text-notes-h4: var(--text-lg);
+  --text-notes-body: var(--text-base);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --secondary: #94a3b8;
+    --accent: #3c83f6;
   }
 }
 
