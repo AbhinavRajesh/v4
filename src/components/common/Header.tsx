@@ -1,9 +1,11 @@
+"use client";
+
 import Link from "next/link";
-import { headers } from "next/headers";
 
 import Logo from "@/components/common/Logo";
+import { usePathname } from "next/navigation";
 
-const NavLink = async ({
+const NavLink = ({
   href,
   children,
   isExternal = false,
@@ -12,8 +14,7 @@ const NavLink = async ({
   children: React.ReactNode;
   isExternal?: boolean;
 }) => {
-  const headerList = await headers();
-  const pathname = headerList.get("x-current-path");
+  const pathname = usePathname();
   const isActive = pathname === href;
 
   return (
