@@ -95,7 +95,7 @@ export default async function Blog({ params }: { params: { slug: string } }) {
           {formatDate(post.metadata.publishedAt)}
         </p>
       </div>
-      <article className={`${styles.default}`}>
+      <article className={`${styles.default} prose-pre:bg-code-background`}>
         <CustomMDX source={post.content} />
       </article>
     </section>

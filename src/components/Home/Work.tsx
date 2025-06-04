@@ -46,7 +46,7 @@ const workList: WorkList[] = [
         </li>
       </ul>
     ),
-    technologies: ["React", "JavaScript", "Jest", "Git"],
+    technologies: ["React", "JavaScript", "Jest", "Git", "JSDoc"],
     link: "https://www.victoriassecret.com",
   },
   {
@@ -87,6 +87,7 @@ const workList: WorkList[] = [
       "Figma",
       "Git",
       "GitHub Actions",
+      "GitHub Pages",
     ],
     link: "https://github.com",
   },
@@ -163,20 +164,13 @@ const workList: WorkList[] = [
     ),
     technologies: [
       "React",
-      "NextJS",
-      "JavaScript",
+      "Ant Design",
       "TypeScript",
       "TailwindCSS",
-      "Primer Style",
-      "Jekyll",
-      "Ruby",
-      "Rspec",
-      "Jest",
-      "Figma",
-      "Azure",
+      "Redux",
+      "Wordpress",
+      "NodeJS",
       "Git",
-      "GitHub API",
-      "GitHub Actions",
     ],
     link: "https://github.com",
   },
@@ -203,6 +197,9 @@ const Work = () => {
             </div>
             <p className="text-sm text-secondary">{work.location}</p>
             <div className="mt-2">{work.description}</div>
+            <p className="text-sm text-secondary mt-2">
+              {work.technologies.join(" | ")}
+            </p>
           </div>
         ))}
       </div>

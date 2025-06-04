@@ -14,7 +14,7 @@ const AccentLink = ({
     <Link
       href={href}
       target={isExternal ? "_blank" : undefined}
-      className="text-accent font-medium hover:underline hover:text-accent/80 transition-all duration-150 ease-in-out underline-offset-4"
+      className={`text-accent font-semibold dark:font-medium hover:underline hover:text-accent/80 transition-all duration-150 ease-in-out underline-offset-4 ${props.className}`}
       {...props}
     >
       {children}

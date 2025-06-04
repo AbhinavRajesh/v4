@@ -2,26 +2,27 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --secondary: #64748b;
+  --background: #f9fafb;
+  --foreground: #0a0a0a;
+  --secondary: #475569;
   --accent: #3c83f6;
   --text-heading: 2.25rem;
   --text-heading--line-height: var(--text-4xl-line-height);
   --text-heading--font-weight: 700;
-  --text-body: 1.125rem;
+  --text-body: 1rem;
   --text-body--line-height: var(--text-base-line-height);
   --text-body--font-weight: 400;
 
   --sh-class: #2d5e9d;
-  --sh-identifier: #354150;
-  --sh-sign: #8996a3;
-  --sh-property: #0550ae;
-  --sh-entity: #249a97;
-  --sh-jsxliterals: #6266d1;
-  --sh-string: #00a99a;
-  --sh-keyword: #f47067;
-  --sh-comment: #a19595;
+  --sh-identifier: #475569;
+  --sh-sign: #64748b;
+  --sh-property: #0369a1;
+  --sh-entity: #15803d;
+  --sh-jsxliterals: #4338ca;
+  --sh-string: #059669;
+  --sh-keyword: #dc2626;
+  --sh-comment: #6b7280;
+  --sh-pre: #f3f4f6;
 }
 
 @theme inline {
@@ -43,6 +44,8 @@
   --text-notes-h3: var(--text-xl);
   --text-notes-h4: var(--text-lg);
   --text-notes-body: var(--text-base);
+
+  --color-code-background: var(--sh-pre);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -51,6 +54,17 @@
     --foreground: #ededed;
     --secondary: #94a3b8;
     --accent: #3c83f6;
+
+    --sh-class: #70a5eb;
+    --sh-identifier: #cdd6f4;
+    --sh-sign: #6c7086;
+    --sh-property: #7dcfff;
+    --sh-entity: #94e2d5;
+    --sh-jsxliterals: #b4befe;
+    --sh-string: #a6e3a1;
+    --sh-keyword: #f38ba8;
+    --sh-comment: #6c7086;
+    --sh-pre: #0f1117;
   }
 }
 

@@ -5,6 +5,7 @@ import "./globals.css";
 
 import Header from "@/components/common/Header";
 import config from "@/confg";
+import Footer from "@/components/common/Footer";
 
 const workSans = Work_Sans({
   variable: "--font-work-sans",
@@ -26,6 +27,7 @@ export default function RootLayout({
       <body className={`${workSans.variable} antialiased max-w-2xl mx-auto`}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
