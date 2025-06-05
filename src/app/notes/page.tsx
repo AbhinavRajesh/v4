@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { formatDate, getNotes } from "@/app/notes/utils";
+import AccentLink from "@/components/common/AccentLink";
 
 export function Notes() {
   let allBlogs = getNotes();
@@ -7,6 +8,13 @@ export function Notes() {
   return (
     <div className="flex flex-col gap-4 font-sans">
       <h1 className="text-heading">Notes</h1>
+      <pre className="text-sm text-secondary pb-2">
+        If you are looking for my old blog, you can find it{" "}
+        <AccentLink href="https://blog.abhinavrajesh.com" isExternal>
+          here
+        </AccentLink>
+        .
+      </pre>
       {allBlogs
         .sort((a, b) => {
           if (
