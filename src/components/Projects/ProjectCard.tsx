@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { getProjects } from "@/app/projects/utils";
 import Link from "next/link";
 

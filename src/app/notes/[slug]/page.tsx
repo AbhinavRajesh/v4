@@ -23,13 +23,13 @@ export async function generateMetadata({
     return;
   }
 
-  let {
+  const {
     title,
     publishedAt: publishedTime,
     summary: description,
     image,
   } = post.mdxSource.frontmatter;
-  let ogImage = image
+  const ogImage = image
     ? image
     : `${baseUrl}/og?title=${encodeURIComponent(title)}`;
 
@@ -64,7 +64,7 @@ const styles = {
 };
 
 export default async function Notes({ params }: { params: { slug: string } }) {
-  let post = (await getNotes()).find((post) => post.slug === params.slug);
+  const post = (await getNotes()).find((post) => post.slug === params.slug);
 
   if (!post) {
     notFound();

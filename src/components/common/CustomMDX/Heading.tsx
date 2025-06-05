@@ -1,4 +1,4 @@
-import React from "react";
+import React, { DetailedHTMLProps, HTMLAttributes } from "react";
 
 function slugify(str: string) {
   return str
@@ -30,8 +30,13 @@ function getHeadingClassName(level: number) {
 
 function createHeading(level: number) {
   const actualLevel = level === 1 ? 2 : level;
-  const Heading = ({ children }: { children: any }) => {
-    let slug = slugify(children.toString());
+  const Heading = ({
+    children,
+  }: DetailedHTMLProps<
+    HTMLAttributes<HTMLHeadingElement>,
+    HTMLHeadingElement
+  >) => {
+    const slug = slugify((children || "").toString());
 
     return React.createElement(
       `h${actualLevel}`,

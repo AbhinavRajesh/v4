@@ -14,20 +14,20 @@ interface WorkList {
 const workList: WorkList[] = [
   {
     title: "Frontend Developer",
-    company: "Victoria's Secret & Co.",
+    company: "Victoria&apos;s Secret & Co.",
     location: "Bangalore, India (Full-time | Remote)",
     startDate: "June 2023",
     endDate: "Present",
     description: (
       <ul className="gap-2 list-disc list-outside pl-4 text-md">
         <li>
-          Enhanced the accessibility of the main Victoria's Secret website,
+          Enhanced the accessibility of the main Victoria&apos;s Secret website,
           leading to a{" "}
           <span className="font-semibold">10% increase in retention</span> among
           users with disabilities.
         </li>
         <li>
-          Implemented the "Keep me signed in" feature, resulting in a{" "}
+          Implemented the &quot;Keep me signed in&quot; feature, resulting in a{" "}
           <span className="font-semibold">$13.6 million</span> annualized impact
         </li>
         <li>
@@ -111,7 +111,8 @@ const workList: WorkList[] = [
           ), serving as key hubs for over{" "}
           <span className="font-semibold">10 million</span> developers in India
           and <span className="font-semibold">3 million+</span> developers in
-          Brazil, respectively, to access GitHub's activities and resources.
+          Brazil, respectively, to access GitHub&apos;s activities and
+          resources.
         </li>
         <li>
           Built a Slack bot for URL shortening and developed internal tools that

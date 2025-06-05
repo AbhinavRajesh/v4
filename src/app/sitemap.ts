@@ -1,17 +1,23 @@
 import { getNotes } from "@/app/notes/utils";
+import { getProjects } from "./projects/utils";
 
 export const baseUrl = "https://www.abhinavrajesh.com";
 
 export default async function sitemap() {
-  let blogs = getNotes().map((post) => ({
+  const blogs = (await getNotes()).map((post) => ({
     url: `${baseUrl}/notes/${post.slug}`,
-    lastModified: post.metadata.publishedAt,
+    lastModified: post.mdxSource.frontmatter.publishedAt,
   }));
 
-  let routes = ["", "/notes"].map((route) => ({
+  const projects = (await getProjects()).map((project) => ({
+    url: `${baseUrl}/projects/${project.slug}`,
+    lastModified: new Date().toISOString().split("T")[0],
+  }));
+
+  const routes = ["", "/notes", "/projects"].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date().toISOString().split("T")[0],
   }));
 
-  return [...routes, ...blogs];
+  return [...routes, ...blogs, ...projects];
 }

@@ -4,7 +4,7 @@ import { CustomMDX } from "@/components/common/CustomMDX";
 import { getProjects } from "@/app/projects/utils";
 
 export async function generateStaticParams() {
-  let projects = await getProjects();
+  const projects = await getProjects();
 
   return projects.map((project) => ({
     slug: project.slug,
@@ -16,7 +16,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }) {
-  let project = (await getProjects()).find(
+  const project = (await getProjects()).find(
     (project) => project.slug === params.slug
   );
 
@@ -24,18 +24,8 @@ export async function generateMetadata({
     return;
   }
 
-  let {
-    title,
-    description,
-    tagline,
-    github_repo,
-    is_group_project,
-    tags,
-    highlight,
-    short_description,
-    image,
-  } = project.mdxSource.frontmatter;
-  let ogImage = image
+  const { title, description, image } = project.mdxSource.frontmatter;
+  const ogImage = image
     ? image
     : `${baseUrl}/og?title=${encodeURIComponent(title)}`;
 
@@ -73,11 +63,9 @@ export default async function Projects({
 }: {
   params: { slug: string };
 }) {
-  let project = (await getProjects()).find(
+  const project = (await getProjects()).find(
     (project) => project.slug === params.slug
   );
-
-  console.log(project);
 
   if (!project) {
     notFound();

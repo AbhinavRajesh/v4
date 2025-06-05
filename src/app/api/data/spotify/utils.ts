@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { TopTracks } from "@/components/About/Spotify/utils";
 import { stringify } from "querystring";
 
