@@ -63,8 +63,13 @@ const styles = {
     "prose-a:text-accent prose-a:font-semibold prose-a:dark:font-medium prose-a:underline prose-a:hover:text-accent/80 prose-a:transition-all prose-a:duration-150 prose-a:ease-in-out prose-a:underline-offset-4",
 };
 
-export default async function Notes({ params }: { params: { slug: string } }) {
-  const post = (await getNotes()).find((post) => post.slug === params.slug);
+export default async function Notes({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = (await getNotes()).find((post) => post.slug === slug);
 
   if (!post) {
     notFound();
