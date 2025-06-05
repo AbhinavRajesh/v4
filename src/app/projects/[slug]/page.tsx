@@ -62,10 +62,11 @@ const styles = {
 export default async function Projects({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
+  const { slug } = await params;
   const project = (await getProjects()).find(
-    (project) => project.slug === params.slug
+    (project) => project.slug === slug
   );
 
   if (!project) {
