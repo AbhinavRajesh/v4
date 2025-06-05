@@ -1,4 +1,4 @@
-export default function YouTube({ id }: { id: string }) {
+const YouTube = ({ id }: { id: string }) => {
   return (
     <div className="w-full rounded-lg overflow-hidden">
       <iframe
@@ -9,4 +9,6 @@ export default function YouTube({ id }: { id: string }) {
       ></iframe>
     </div>
   );
-}
+};
+
+export default YouTube;

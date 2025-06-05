@@ -2,7 +2,7 @@ import AboutContent from "@/components/About";
 import Spotify from "@/components/About/Spotify";
 import { Suspense } from "react";
 
-export default function About() {
+const About = () => {
   return (
     <div className="flex flex-col gap-4 font-sans">
       <h1 className="text-heading font-bold font-mono">About</h1>
@@ -12,4 +12,6 @@ export default function About() {
       </Suspense>
     </div>
   );
-}
+};
+
+export default About;

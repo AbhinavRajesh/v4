@@ -2,7 +2,7 @@ import Education from "@/components/Home/Education";
 import Hero from "@/components/Home/Hero";
 import Work from "@/components/Home/Work";
 
-export default function Home() {
+const Home = () => {
   return (
     <>
       <Hero />
@@ -10,4 +10,6 @@ export default function Home() {
       <Education />
     </>
   );
-}
+};
+
+export default Home;
