@@ -3,7 +3,7 @@ import { getNotes } from "@/app/notes/utils";
 import AccentLink from "@/components/common/AccentLink";
 import { formatDate } from "@/utils";
 
-export async function Notes() {
+async function Notes() {
   const notes = await getNotes();
 
   return (
