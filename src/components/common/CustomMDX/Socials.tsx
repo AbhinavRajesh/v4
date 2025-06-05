@@ -1,4 +1,4 @@
-import config from "@/confg";
+import config from "@/utils/config";
 import { Mail } from "lucide-react";
 
 const socialIcons = {

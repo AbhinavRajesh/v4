@@ -1,4 +1,4 @@
-import config from "@/confg";
+import config from "@/utils/config";
 import AccentLink from "@/components/common/AccentLink";
 import Socials from "@/components/common/CustomMDX/Socials";
 

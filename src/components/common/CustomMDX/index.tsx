@@ -6,6 +6,7 @@ import React from "react";
 import { createHeading } from "./Heading";
 import YouTube from "./Youtube";
 import Socials from "./Socials";
+import { MDXRemoteProps } from "next-mdx-remote";
 
 function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
   let headers = data.headers.map((header, index) => (

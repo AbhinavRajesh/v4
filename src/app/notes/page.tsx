@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { formatDate, getNotes } from "@/app/notes/utils";
+import { getNotes } from "@/app/notes/utils";
 import AccentLink from "@/components/common/AccentLink";
+import { formatDate } from "@/utils";
 
-export function Notes() {
-  let allBlogs = getNotes();
+export async function Notes() {
+  const notes = await getNotes();
 
   return (
     <div className="flex flex-col gap-4 font-sans">
@@ -15,10 +16,11 @@ export function Notes() {
         </AccentLink>
         .
       </pre>
-      {allBlogs
+      {notes
         .sort((a, b) => {
           if (
-            new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)
+            new Date(a.mdxSource.frontmatter.publishedAt) >
+            new Date(b.mdxSource.frontmatter.publishedAt)
           ) {
             return -1;
           }
@@ -31,13 +33,13 @@ export function Notes() {
             href={`/notes/${post.slug}`}
           >
             <h2 className="text-notes-h4 leading-none font-bold font-sans group-hover:text-foreground/80 transition-all duration-150 ease-in-out">
-              {post.metadata.title}
+              {post.mdxSource.frontmatter.title}
             </h2>
             <p className="text-secondary text-xs group-hover:text-secondary/80 transition-all duration-150 ease-in-out">
-              {formatDate(post.metadata.publishedAt, false)}
+              {formatDate(post.mdxSource.frontmatter.publishedAt, false)}
             </p>
             <p className="text-foreground text-sm group-hover:text-foreground/80 transition-all duration-150 ease-in-out">
-              {post.metadata.summary}
+              {post.mdxSource.frontmatter.summary}
             </p>
           </Link>
         ))}

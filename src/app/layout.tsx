@@ -4,7 +4,7 @@ import { Work_Sans } from "next/font/google";
 import "./globals.css";
 
 import Header from "@/components/common/Header";
-import config from "@/confg";
+import config from "@/utils/config";
 import Footer from "@/components/common/Footer";
 
 const workSans = Work_Sans({
