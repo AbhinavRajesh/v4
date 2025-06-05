@@ -1,5 +1,6 @@
 import config from "@/confg";
 import AccentLink from "@/components/common/AccentLink";
+import Socials from "@/components/common/CustomMDX/Socials";
 
 const Hero = () => {
   return (
@@ -23,6 +24,7 @@ const Hero = () => {
         If you&apos;re hiring, looking for a collaborator, or just want to chat
         about product, dev, or something in between—I&apos;d love to connect.
       </p>
+      <Socials />
     </div>
   );
 };

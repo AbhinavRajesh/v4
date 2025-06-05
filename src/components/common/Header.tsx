@@ -38,9 +38,6 @@ const Header = () => {
         <NavLink href="/about">~/about</NavLink>
         <NavLink href="/projects">~/projects</NavLink>
         <NavLink href="/notes">~/notes</NavLink>
-        <NavLink href="https://blog.abhinavrajesh.com" isExternal>
-          ~/blog
-        </NavLink>
       </nav>
       <Logo href="/" />
     </header>
