@@ -1,0 +1,179 @@
+---
+title: How I built CLI version of Wordle game
+publishedAt: 2022-02-05
+summary: Building the CLI version of the popular game Wordle using TypeScript, Chalk and Inquirer
+image: "https://cdn.hashnode.com/res/hashnode/image/upload/v1644080310777/HD0eKs64I.png?w=1200&auto=compress,format&format=webp&fm=png"
+---
+
+For the past couple of months, my Twitter feed is filled with a bunch of green and yellow boxes which are the attempts of different people at [Wordle](https://www.powerlanguage.co.uk/wordle/)
+
+<Image
+  src="https://cdn.hashnode.com/res/hashnode/image/upload/v1643569767565/7u_EWWyI3.png"
+  alt="My twitter feed filled with Wordle"
+/>
+
+Since seeing these tweets, I decided to give wordle a try.
+
+At first, it seemed like a basic game, nothing special about it just a basic minimal UI with input boxes and pretty straightforward. Then I started playing the game and it felt kinda cool.
+
+Few key takeaways from the game
+
+- A random five-letter word is generated.
+- Six attempts at finding the word.
+- No words are repeated (at the time of writing this post).
+- Letter not present in the word are greyed out.
+- Letter present in the word but at the incorrect location is marked as yellow.
+- Letter present in the word and at the correct location is marked as green.
+- Only a single word a day
+- Option to share the boxes on Twitter or any social media application.
+
+After playing around with the game, and being a developer I decided to create a clone. But I didn't really wanna create a web clone as there are already a ton of them present online and really wanted to try something out, like a mobile app or something else.
+
+And that's when a video of fireship was dropped about building a CLI application using NodeJS.
+
+<YouTube id="_oHByo8tiEY" />
+
+I really wanted to create a CLI app and I have only created one before, so I decided to create a CLI clone of Wordle!
+
+## Building
+
+So I started out by listing out the features that need to be implemented and the required items for the build.
+
+- A collection of five letter valid words
+- Six attempts at guessing the word
+- Only show 1 word per day
+- Save and display the previous guesses on the same day
+- Option to share the result on Twitter or any other social media application
+
+I started by creating a [Github repository](https://github.com/AbhinavRajesh/wordle-cli)
+
+Then I needed a collection of words, my friend from discord helped me get a collection of 12,930 five-letter words. I have no clue where he got the list from, but anyways really appreciate it.
+
+The words list is present at my [Github Repository](https://github.com/AbhinavRajesh/wordle-cli/blob/main/src/words.json). While you are at it, might as well star the repo :P
+
+After I have all the words required, I started by creating a function to set the word for the day. I wanted to make the game such that on a particular day anyone using the app would be having the same word.
+
+```ts
+// src/cli/setWord.ts
+export const setWord = async (today: Date) => {
+  const referenceDate = new Date("01/29/2022").getTime();
+  const diffTime: number = Math.abs(today.getTime() - referenceDate);
+  const offsetDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  const newData: typeof data = {
+    name: data.name,
+    date: {
+      ...data.date,
+      [today.toLocaleDateString("en-GB")]: {
+        word: words[offsetDays % words.length],
+        guesses: [],
+      },
+    },
+  };
+  await fs.writeFileSync(
+    path.resolve(__dirname, "../data.json"),
+    JSON.stringify(newData)
+  );
+};
+```
+
+This function basically calculates the offset of the current day from the initial release of the package (29th of January 2022). And based on this offset I fetch the corresponding word in the words list.
+
+After selecting the word for the day, I decided to create a function to get the user input. For getting the guess from the user I used the package called `inquirer`. This package has many options to fetch input from the user in the form of input, checkbox, etc.
+
+```ts
+export const getGuess = async (guessNumber: number) => {
+  inquirer.registerPrompt("maxlength-input", MaxLengthInputPrompt);
+  const { guess } = await inquirer.prompt([
+    {
+      type: "maxlength-input",
+      message: `Enter guess #${guessNumber.toString()}`,
+      name: "guess",
+      maxLength: 5,
+      validate: (input: string) => {
+        if (input.length === 0) return "Enter some text";
+        else if (input.length < 5) return "Enter 5 letter word";
+        else return true;
+      },
+    },
+  ]);
+  const today = new Date().toLocaleDateString("en-GB");
+  const jsonData = await JSON.parse(
+    fs.readFileSync(path.resolve(__dirname, "../data.json"), "utf-8")
+  );
+  fs.writeFileSync(
+    path.resolve(__dirname, "../data.json"),
+    JSON.stringify({
+      word: jsonData.word,
+      date: {
+        ...jsonData.date,
+        [today]: {
+          word: jsonData.date?.[today].word,
+          guesses: [...jsonData.date?.[today].guesses, guess],
+        },
+      },
+    })
+  );
+  return guess.toLowerCase();
+};
+```
+
+After getting the user's guess, I needed to compare the guess with the word for the day and display the result according to the rules of the game. For displaying the colours for the background of each letter, I used the package called `chalk`. For performing all this, I implemented the following function
+
+```ts
+import chalk from "chalk";
+
+export const displayGuess = (word: string, guess: string) => {
+  const backgroundColors: string[] = [];
+  for (let i = 0; i < word.length; i++) {
+    if (word[i] === guess[i]) backgroundColors.push("green");
+    else if (word.indexOf(guess[i]) !== -1) backgroundColors.push("yellow");
+    else backgroundColors.push("white");
+  }
+  let finalLog = "";
+  guess.split("").forEach((character, i) => {
+    if (backgroundColors[i] === "green")
+      finalLog += chalk.black.bold.bgGreen(` ${character} `);
+    else if (backgroundColors[i] === "yellow")
+      finalLog += chalk.black.bold.bgYellow(` ${character} `);
+    else finalLog += chalk.black.bold.bgWhite(` ${character} `);
+    finalLog += " ";
+  });
+  console.log(finalLog);
+};
+```
+
+And finally, I check if the user made the correct guess. If the user made the correct guess display a congratulations message and display the shareable boxes also with a URL to Twitter which when clicked posts the result to Twitter. If the user doesn't make the correct guess the user is again asked to guess till the number of guesses left exhausts and finally the word is revealed.
+
+And in the end, you would get something like this
+
+<Image
+  src="https://cdn.hashnode.com/res/hashnode/image/upload/v1644078673653/LI0N_RprC.png"
+  alt="Wordle-cli in action!"
+/>
+
+The game is available on npm. To play follow these steps
+
+```
+# Installation step
+# Using npm
+npm install -g @abhinavrajesh/wordle
+
+# Using yarn
+yarn global add @abhinavrajesh/wordle
+
+# Run the game
+wordle
+```
+
+And that's it for this article! Do give your feedback on the application in the comments below.
+
+Links:
+
+- npm: [@abhinavrajesh/wordle](https://www.npmjs.com/package/@abhinavrajesh/wordle)
+- Github: [AbhinavRajesh/wordle-cli](https://github.com/AbhinavRajesh/wordle-cli) [If you liked the project do give the repository a 🌟]
+
+Feel free to drop a PR or an issue if you find any bugs.
+
+If you enjoyed the article do consider sharing the article and by following me on Twitter [@\_AbhinavRajesh\_](https://twitter.com/_AbhinavRajesh_)
+
+<Socials />

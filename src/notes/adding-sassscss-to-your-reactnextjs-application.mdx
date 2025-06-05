@@ -1,0 +1,69 @@
+---
+title: Adding SASS/SCSS to your React/NextJS Application
+publishedAt: 2021-06-27
+summary: Explaining the features offered by sass/scss and how you can add them to your React/NextJS Project in a single step!
+image: "https://cdn.hashnode.com/res/hashnode/image/upload/v1624806768299/6Z7yF8rTf.jpeg?w=1200&auto=compress,format&format=webp&fm=png"
+---
+
+### What is SASS?
+
+SASS short for **S**yntactically **A**wesome **S**tyle**S**heet (Yes, as the name suggests, it's really awesome), it is just CSS but better (Basically you can say SASS is CSS on steroids!). It is a preprocessor scripting language that is interpreted or compiled into Cascading Style Sheets
+
+### Why SASS?
+
+SASS has few options which aren't offered by CSS. Few of them are
+
+1. **Variables:** With SASS, you can save information in variables to be used again later. So it’s possible, for example, to centrally store a colour value under a catchier variable.
+2. **Mathematical functions:** In SASS, you can also use mathematical operations like +, -, \*, /, or %. This allows you to influence size specifications.
+3. **Functions:** Other functions also make it easier to work on the design. These allow you to modify colour values or analyze lists, among other things.
+4. **Mixins:** Mixins, simply said, are templates. You can either create them yourself or simply integrate them into your own code when using a framework.
+
+There are many more amazing features offered by Sass.
+
+### Syntax
+
+Sass includes two syntax options:
+
+1. **SCSS (Sassy CSS):** Using the `.scss` file extension and is fully adjective with CSS syntax
+2. **Indented (simply called ‘Sass’):** using `.sass` file extension and indentation rather than brackets; it is not fully adjective with CSS syntax, but it’s quicker to write.
+
+### Adding it to your React Application
+
+Adding it to CRA app and NextJS app is a bit different, I will explain how you can add it to both the applications.
+
+#### Adding SASS/SCSS to NextJS Application
+
+It is a straightforward process, you just have to install the `sass` package and you are good to go!
+
+```
+// using npm
+npm i sass
+
+// using yarn
+yarn add sass
+```
+
+#### Adding SASS/SCSS to CRA Application
+
+React-scripts uses `sass-loader v8`, which prefers node-sass to sass (which has some syntax not supported by node-sass). So we would be using that package instead
+
+```
+// using npm
+npm i node-sass@4.14
+
+// using yarn
+yarn add node-sass@4.14
+```
+
+Version 4.14 is preferred over the latest version of node-sass because it would throw an error. Or you could refer the below image and install the node-sass version according to your Node version!
+
+<Image
+  src="https://cdn.hashnode.com/res/hashnode/image/upload/v1624805620676/Y6wY0rSA_.png"
+  alt="node-sass version support"
+/>
+
+After installing the `node-sass/sass` package now you just have to rename the .css file extension to sass or scss and change the imports, that's it! You have added the sass/scss to your react application.
+
+I hope this blog post helped you guys.
+
+<Socials />

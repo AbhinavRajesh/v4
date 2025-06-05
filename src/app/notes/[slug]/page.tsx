@@ -53,7 +53,9 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
 }
 
 const styles = {
-  default: "prose dark:prose-invert font-sans",
+  default: "prose dark:prose-invert font-sans prose-pre:leading-none",
+  anchor:
+    "prose-a:text-accent prose-a:font-semibold prose-a:dark:font-medium prose-a:underline prose-a:hover:text-accent/80 prose-a:transition-all prose-a:duration-150 prose-a:ease-in-out prose-a:underline-offset-4",
 };
 
 export default async function Blog({ params }: { params: { slug: string } }) {
@@ -90,12 +92,14 @@ export default async function Blog({ params }: { params: { slug: string } }) {
       <h1 className="font-semibold font-mono text-notes-h2 tracking-tighter">
         {post.metadata.title}
       </h1>
-      <div className="flex justify-between items-center mt-2 mb-8 text-sm">
+      <div className="flex justify-between items-center mt-2 mb-8 text-sm ">
         <p className="text-sm text-neutral-600 dark:text-neutral-400 font-sans">
           {formatDate(post.metadata.publishedAt)}
         </p>
       </div>
-      <article className={`${styles.default} prose-pre:bg-code-background`}>
+      <article
+        className={`${styles.default} ${styles.anchor} prose-pre:bg-code-background`}
+      >
         <CustomMDX source={post.content} />
       </article>
     </section>
