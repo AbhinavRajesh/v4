@@ -21,6 +21,10 @@ export const getSpotifyData = async (): Promise<SpotifyData> => {
       headers: {
         api_key: process.env.API_KEY as string,
       },
+      next: {
+        // 12 hours
+        revalidate: 60 * 60 * 12,
+      },
     });
 
     const data = await response.json();
