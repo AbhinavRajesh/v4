@@ -29,8 +29,8 @@ const About = () => {
         , and since then I&apos;ve worked with both startups and enterprise
         teams—turning ideas into products, and collaborating with folks who care
         about craft. I also occasionally write about tech on my{" "}
-        <AccentLink href={config.userData.social.website} isExternal>
-          blog↗
+        <AccentLink href="/notes">
+          blog
         </AccentLink>
         , and share what I&apos;m building on{" "}
         <AccentLink href={config.userData.social.twitter} isExternal>

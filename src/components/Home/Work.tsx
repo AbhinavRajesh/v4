@@ -14,7 +14,7 @@ interface WorkList {
 const workList: WorkList[] = [
   {
     title: "Frontend Developer",
-    company: "Victoria&apos;s Secret & Co.",
+    company: "Victoria's Secret & Co.",
     location: "Bangalore, India (Full-time | Remote)",
     startDate: "June 2023",
     endDate: "Present",

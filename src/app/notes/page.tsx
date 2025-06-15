@@ -9,13 +9,13 @@ async function Notes() {
   return (
     <div className="flex flex-col gap-4 font-sans">
       <h1 className="text-heading">Notes</h1>
-      <pre className="text-sm text-secondary pb-2">
+      <p className="text-sm text-secondary pb-2">
         If you are looking for my old blog, you can find it{" "}
         <AccentLink href="https://blog.abhinavrajesh.com" isExternal>
           here
         </AccentLink>
         .
-      </pre>
+      </p>
       {notes
         .sort((a, b) => {
           if (
