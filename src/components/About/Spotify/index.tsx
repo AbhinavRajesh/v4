@@ -1,3 +1,5 @@
+"use client";
+
 import { getSpotifyData } from "@/components/About/Spotify/utils";
 import SpotifyCard from "@/components/About/Spotify/Card";
 
