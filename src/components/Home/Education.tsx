@@ -14,7 +14,7 @@ const educationList: EducationList[] = [
     location: "Ernakulam, Kerala, India",
     startDate: "2019",
     endDate: "2023",
-    score: "9.05 GPA",
+    score: "9.05 GPA (out of 10)",
   },
   {
     title: "Higher Secondary Education in CS(AISSCE)",

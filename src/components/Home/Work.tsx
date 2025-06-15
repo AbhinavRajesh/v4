@@ -44,6 +44,23 @@ const workList: WorkList[] = [
             50% of users preferring OTP over passwords.
           </span>
         </li>
+        <li>
+          <span className="font-semibold">Core contributor</span> to the
+          architecture team responsible for migrating analytics from Tealium
+          utag to an{" "}
+          <span className="font-semibold">Event-Driven Data Layer (EDDL)</span>,
+          contributing to an estimated{" "}
+          <span className="font-semibold">$70K annual cost savings</span> by
+          reducing reliance on third-party tools and improving event tracking
+          reliability.
+        </li>
+        <li>
+          <span className="font-semibold">
+            Supported the onboarding of frontend developers
+          </span>{" "}
+          to the new EDDL approach through documentation, code reviews, and
+          hands-on mentoring.
+        </li>
       </ul>
     ),
     technologies: ["React", "JavaScript", "Jest", "Git", "JSDoc"],
@@ -182,7 +199,10 @@ const Work = () => {
     <div className="flex flex-col gap-4 mt-8 font-sans">
       <h2 className="text-heading font-bold">Work</h2>
       <p className="text-body text-secondary">
-        Checkout my <AccentLink href="/resume">resume</AccentLink>
+        Checkout my{" "}
+        <AccentLink href="/resume/06-2025.pdf" isExternal>
+          resume
+        </AccentLink>
       </p>
       <div className="flex flex-col gap-4">
         {workList.map((work) => (
