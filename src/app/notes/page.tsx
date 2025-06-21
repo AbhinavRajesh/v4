@@ -32,7 +32,7 @@ async function Notes() {
             className="flex flex-col space-y-1 mb-4 group w-full"
             href={`/notes/${post.slug}`}
           >
-            <h2 className="text-notes-h4 leading-none font-bold font-sans group-hover:text-foreground/80 transition-all duration-150 ease-in-out">
+            <h2 className="text-notes-h4 leading-normal font-bold font-sans group-hover:text-foreground/80 transition-all duration-150 ease-in-out">
               {post.mdxSource.frontmatter.title}
             </h2>
             <p className="text-secondary text-xs group-hover:text-secondary/80 transition-all duration-150 ease-in-out">
