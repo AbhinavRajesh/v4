@@ -10,8 +10,13 @@ const userData = {
   },
 };
 
+const analytics = {
+  gaId: process.env.NEXT_PUBLIC_GA_ID as string,
+};
+
 const config = {
   userData,
+  analytics,
 };
 
 export default config;

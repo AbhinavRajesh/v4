@@ -1,6 +1,12 @@
 import AboutContent from "@/components/About";
 import Spotify from "@/components/About/Spotify";
 import { Suspense } from "react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About",
+  description: "About me, my work and the music I listen to",
+};
 
 const About = () => {
   return (

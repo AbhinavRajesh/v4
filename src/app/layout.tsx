@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { Work_Sans } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 import "./globals.css";
 
 import Header from "@/components/common/Header";
 import config from "@/utils/config";
 import Footer from "@/components/common/Footer";
+import { WebVitals } from "@/components/common/WebVitals";
 
 const workSans = Work_Sans({
   variable: "--font-work-sans",
@@ -13,7 +15,10 @@ const workSans = Work_Sans({
 });
 
 export const metadata: Metadata = {
-  title: `${config.userData.name} - ${config.userData.description}`,
+  title: {
+    template: `%s | ${config.userData.name} - ${config.userData.description}`,
+    default: `${config.userData.name} - ${config.userData.description}`,
+  },
   description: config.userData.description,
 };
 
@@ -27,6 +32,8 @@ export default function RootLayout({
       <body
         className={`${workSans.variable} antialiased max-w-2xl mx-auto px-[16px] md:px-[32px] lg:px-0`}
       >
+        <GoogleAnalytics gaId={config.analytics.gaId} />
+        <WebVitals />
         <Header />
         {children}
         <Footer />

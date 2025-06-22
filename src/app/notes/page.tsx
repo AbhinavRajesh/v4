@@ -2,6 +2,12 @@ import Link from "next/link";
 import { getNotes } from "@/app/notes/utils";
 import AccentLink from "@/components/common/AccentLink";
 import { formatDate } from "@/utils";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Notes",
+  description: "My notes on various topics, mostly about programming",
+};
 
 async function Notes() {
   const notes = await getNotes();
