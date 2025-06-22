@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Work_Sans } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import "./globals.css";
 
@@ -33,6 +35,8 @@ export default function RootLayout({
         className={`${workSans.variable} antialiased max-w-2xl mx-auto px-[16px] md:px-[32px] lg:px-0`}
       >
         <GoogleAnalytics gaId={config.analytics.gaId} />
+        <Analytics />
+        <SpeedInsights />
         <WebVitals />
         <Header />
         {children}
