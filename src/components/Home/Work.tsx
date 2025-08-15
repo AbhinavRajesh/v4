@@ -61,6 +61,10 @@ const workList: WorkList[] = [
           to the new EDDL approach through documentation, code reviews, and
           hands-on mentoring.
         </li>
+        <li>
+          Currently assisting in the migration of the codebase from React 16 to
+          React 18.
+        </li>
       </ul>
     ),
     technologies: ["React", "JavaScript", "Jest", "Git", "JSDoc"],
@@ -200,23 +204,27 @@ const Work = () => {
       <h2 className="text-heading font-bold">Work</h2>
       <p className="text-body text-secondary">
         Checkout my{" "}
-        <AccentLink href="/resume/06-2025.pdf" isExternal>
+        <AccentLink
+          href="https://drive.google.com/file/d/1cYyG-tjDqpmwyxzEJaD1EEfPM1DHXAXn/view?usp=sharing"
+          isExternal
+        >
           resume
         </AccentLink>
       </p>
       <div className="flex flex-col gap-4">
         {workList.map((work) => (
           <div key={work.title} className="flex flex-col">
-            <div className="flex items-center justify-between gap-2">
-              <h3 className="text-lg font-bold">
-                {work.title} —{" "}
-                <AccentLink href={work.link}>{work.company}</AccentLink>
-              </h3>
+            <h3 className="text-lg font-bold">
+              {work.title} -{" "}
+              <AccentLink href={work.link}>{work.company}</AccentLink>
+            </h3>
+            <div className="flex flex-col md:flex-row md:gap-2">
+              <p className="text-sm text-secondary">{work.location}</p>
+              <span className="hidden md:block text-sm text-secondary">|</span>
               <p className="text-sm text-secondary">
                 {work.startDate} — {work.endDate}
               </p>
             </div>
-            <p className="text-sm text-secondary">{work.location}</p>
             <div className="mt-2">{work.description}</div>
             <p className="text-sm text-secondary mt-2">
               {work.technologies.join(" | ")}

@@ -8,6 +8,7 @@ const AccentLink = ({
   href,
   children,
   isExternal = false,
+  className = "",
   ...props
 }: AccentLinkProps) => {
   return (
@@ -15,7 +16,7 @@ const AccentLink = ({
       href={href}
       target={isExternal ? "_blank" : undefined}
       rel={isExternal ? "noopener noreferrer" : undefined}
-      className={`text-accent font-semibold dark:font-medium hover:underline hover:text-accent/80 transition-all duration-150 ease-in-out underline-offset-4 ${props.className}`}
+      className={`text-accent font-semibold dark:font-medium hover:underline hover:text-accent/80 transition-all duration-150 ease-in-out underline-offset-4 ${className}`}
       {...props}
     >
       {children}
