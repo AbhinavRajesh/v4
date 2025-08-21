@@ -12,6 +12,9 @@
   --text-body: 1rem;
   --text-body--line-height: var(--text-base-line-height);
   --text-body--font-weight: 400;
+  --border: oklch(0.92 0.004 286.32);
+
+  --edge: color-mix(in oklab, var(--border) 64%, var(--background));
 
   --sh-class: #2d5e9d;
   --sh-identifier: #475569;
@@ -40,6 +43,8 @@
   --text-body--line-height: var(--text-body--line-height);
   --text-body--font-weight: var(--text-body--font-weight);
 
+  --color-edge: var(--edge);
+
   --text-notes-h2: var(--text-2xl);
   --text-notes-h3: var(--text-xl);
   --text-notes-h4: var(--text-lg);
@@ -54,6 +59,7 @@
     --foreground: #ededed;
     --secondary: #94a3b8;
     --accent: #3c83f6;
+    --border: oklch(0.274 0.006 286.033);
 
     --sh-class: #70a5eb;
     --sh-identifier: #cdd6f4;

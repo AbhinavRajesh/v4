@@ -32,15 +32,23 @@ const NavLink = ({
 
 const Header = () => {
   return (
-    <header className="flex justify-between items-center py-4">
-      <nav className="flex gap-4 font-mono text-secondary">
-        <NavLink href="/">~/</NavLink>
-        <NavLink href="/about">~/about</NavLink>
-        <NavLink href="/projects">~/projects</NavLink>
-        <NavLink href="/notes">~/notes</NavLink>
-      </nav>
-      <Logo href="/" />
-    </header>
+    <div className="pt-2 sticky inset-0 top-0 z-50 bg-background">
+      <div className="border-y border-edge">
+        <header className="flex justify-between items-center max-w-2xl mx-auto border-x border-edge px-4">
+          <div className="flex h-full">
+            <nav className="flex gap-4 font-mono text-secondary h-full">
+              <NavLink href="/">~/</NavLink>
+              <NavLink href="/about">~/about</NavLink>
+              <NavLink href="/projects">~/projects</NavLink>
+              <NavLink href="/notes">~/notes</NavLink>
+            </nav>
+          </div>
+          <div className="border-l border-edge pl-4">
+            <Logo href="/" />
+          </div>
+        </header>
+      </div>
+    </div>
   );
 };
 

@@ -1,3 +1,5 @@
+import BorderWrapper from "@/components/common/BorderWrapper";
+
 interface EducationList {
   title: string;
   major: string;
@@ -31,30 +33,34 @@ const educationList: EducationList[] = [
 
 const Education = () => {
   return (
-    <div className="flex flex-col gap-4 mt-8 font-sans">
-      <h2 className="text-heading font-bold">Education</h2>
-      <div className="flex flex-col gap-4">
+    <div className="flex flex-col font-sans">
+      <BorderWrapper padding="px-4">
+        <h2 className="text-heading font-bold">Education</h2>
+      </BorderWrapper>
+      <div className="flex flex-col">
         {educationList.map((education) => (
-          <div key={education.title} className="flex flex-col">
-            <div className="flex flex-col md:flex-row md:gap-1">
-              <h3 className="text-lg font-bold">{education.title}</h3>
-              <span className="hidden md:block font-bold text-lg"> - </span>
-              <h4 className="text-sm md:text-lg md:font-bold">
-                {education.major}
-              </h4>
+          <BorderWrapper key={education.title} borderY="border-b">
+            <div className="flex flex-col">
+              <div className="flex flex-col md:flex-row md:gap-1">
+                <h3 className="text-lg font-bold">{education.title}</h3>
+                <span className="hidden md:block font-bold text-lg"> - </span>
+                <h4 className="text-sm md:text-lg md:font-bold">
+                  {education.major}
+                </h4>
+              </div>
+              <div className="flex flex-col md:flex-row">
+                <p className="text-sm text-secondary">{education.school}</p>
+                <span className="hidden md:block text-sm text-secondary pr-1">
+                  ,
+                </span>
+                <p className="text-sm text-secondary">{education.location}</p>
+              </div>
+              <p className="text-sm text-secondary">{education.score}</p>
+              <p className="text-sm text-secondary">
+                {education.startDate} — {education.endDate}
+              </p>
             </div>
-            <div className="flex flex-col md:flex-row">
-              <p className="text-sm text-secondary">{education.school}</p>
-              <span className="hidden md:block text-sm text-secondary pr-1">
-                ,
-              </span>
-              <p className="text-sm text-secondary">{education.location}</p>
-            </div>
-            <p className="text-sm text-secondary">{education.score}</p>
-            <p className="text-sm text-secondary">
-              {education.startDate} — {education.endDate}
-            </p>
-          </div>
+          </BorderWrapper>
         ))}
       </div>
     </div>
