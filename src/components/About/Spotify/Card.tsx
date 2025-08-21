@@ -18,12 +18,20 @@ const ExplicitIcon = () => (
   </svg>
 );
 
-const SpotifyCard = ({ track }: { track: TopTracks }) => {
+const SpotifyCard = ({
+  track,
+  hasBorder = false,
+}: {
+  track: TopTracks;
+  hasBorder: boolean;
+}) => {
   return (
     <Link
       href={track.url}
       target="_blank"
-      className="flex flex-row gap-2 border-t border-secondary/20 py-2 hover:bg-secondary/10 transition-all duration-150 ease-in-out cursor-pointer"
+      className={`flex flex-row gap-2 py-2 hover:bg-secondary/10 transition-all duration-150 ease-in-out cursor-pointer ${
+        hasBorder ? "border-b border-edge border-dashed" : ""
+      } px-4`}
     >
       <Image
         src={track.imageUrl}

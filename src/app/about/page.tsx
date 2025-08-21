@@ -2,6 +2,8 @@ import AboutContent from "@/components/About";
 import Spotify from "@/components/About/Spotify";
 import { Suspense } from "react";
 import { Metadata } from "next";
+import BorderWrapper from "@/components/common/BorderWrapper";
+import Separator from "@/components/common/Separator";
 
 export const metadata: Metadata = {
   title: "About",
@@ -10,10 +12,25 @@ export const metadata: Metadata = {
 
 const About = () => {
   return (
-    <div className="flex flex-col gap-4 font-sans">
-      <h1 className="text-heading font-bold font-mono">About</h1>
-      <AboutContent />
-      <Suspense fallback={<div>Crunching the latest Spotify stats...</div>}>
+    <div className="flex flex-col font-sans">
+      <Separator />
+      <BorderWrapper padding="px-4">
+        <h1 className="text-heading font-bold font-mono">About</h1>
+      </BorderWrapper>
+      <BorderWrapper>
+        <AboutContent />
+      </BorderWrapper>
+      <Suspense
+        fallback={
+          <div>
+            <Separator />
+            <BorderWrapper borderY="border-t">
+              Crunching the latest Spotify stats...
+            </BorderWrapper>
+          </div>
+        }
+      >
+        <Separator />
         <Spotify />
       </Suspense>
     </div>
