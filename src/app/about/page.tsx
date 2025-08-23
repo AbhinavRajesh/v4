@@ -14,7 +14,7 @@ const About = () => {
   return (
     <div className="flex flex-col font-sans">
       <Separator />
-      <BorderWrapper padding="px-4">
+      <BorderWrapper padding="px-4" borderY="border-t">
         <h1 className="text-heading font-bold font-mono">About</h1>
       </BorderWrapper>
       <BorderWrapper>

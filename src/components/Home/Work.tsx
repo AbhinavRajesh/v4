@@ -228,8 +228,8 @@ const Work = () => {
             borderY={index === workList.length - 1 ? "border-y" : "border-t"}
           >
             <div className="flex flex-col">
-              <div className="flex gap-4">
-                <div className="bg-white w-8 md:w-12 h-8 md:h-12 rounded-sm aspect-square overflow-hidden p-1">
+              <div className="flex items-center gap-4">
+                <div className="bg-white w-8 md:w-12 h-8 md:h-12 rounded-sm aspect-square overflow-hidden p-1 border border-edge">
                   <img
                     src={work.companyLogo}
                     alt={`${work.company} logo`}
@@ -239,10 +239,13 @@ const Work = () => {
                   />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold">
-                    {work.title} ,{" "}
-                    <AccentLink href={work.link}>{work.company}</AccentLink>
-                  </h3>
+                  <h3 className="text-lg font-bold leading-5">{work.title}</h3>
+                  <AccentLink
+                    className="text-lg leading-5 block font-bold"
+                    href={work.link}
+                  >
+                    {work.company}
+                  </AccentLink>
                   <div className="flex flex-col md:flex-row md:gap-2">
                     <p className="text-sm text-secondary">{work.location}</p>
                     <span className="hidden md:block text-sm text-secondary">

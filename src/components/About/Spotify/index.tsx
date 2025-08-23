@@ -19,7 +19,7 @@ const Spotify = async () => {
           listening to over the past few months.
         </p>
       </BorderWrapper>
-      <BorderWrapper padding="" borderY="">
+      <BorderWrapper padding="" borderY="border-b">
         <div className="flex flex-col">
           {topTracks?.map((track, index) => (
             <SpotifyCard
