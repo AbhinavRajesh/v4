@@ -3,6 +3,8 @@ import { getNotes } from "@/app/notes/utils";
 import { baseUrl } from "@/app/sitemap";
 import { CustomMDX } from "@/components/common/CustomMDX";
 import { formatDate } from "@/utils";
+import BorderWrapper from "@/components/common/BorderWrapper";
+import Separator from "@/components/common/Separator";
 
 export async function generateStaticParams() {
   const posts = await getNotes();
@@ -102,19 +104,26 @@ export default async function Notes({
           }),
         }}
       />
-      <h1 className="font-semibold font-mono text-notes-h2 tracking-tighter">
-        {post.mdxSource.frontmatter.title}
-      </h1>
-      <div className="flex justify-between items-center mt-2 mb-8 text-sm ">
-        <p className="text-sm text-neutral-600 dark:text-neutral-400 font-sans">
-          {formatDate(post.mdxSource.frontmatter.publishedAt)}
-        </p>
-      </div>
-      <article
-        className={`${styles.default} ${styles.anchor} prose-pre:bg-code-background`}
-      >
-        <CustomMDX source={post.mdxSource.content} />
-      </article>
+      <Separator />
+      <BorderWrapper padding="px-4" borderY="border-t">
+        <h1 className="font-semibold font-mono text-notes-h2 tracking-tighter">
+          {post.mdxSource.frontmatter.title}
+        </h1>
+      </BorderWrapper>
+      <BorderWrapper padding="px-4 py-1" borderY="border-t">
+        <div className="flex justify-between items-center text-sm">
+          <p className="text-sm text-neutral-600 dark:text-neutral-400 font-sans">
+            {formatDate(post.mdxSource.frontmatter.publishedAt)}
+          </p>
+        </div>
+      </BorderWrapper>
+      <BorderWrapper>
+        <article
+          className={`${styles.default} ${styles.anchor} prose-pre:bg-code-background`}
+        >
+          <CustomMDX source={post.mdxSource.content} />
+        </article>
+      </BorderWrapper>
     </section>
   );
 }

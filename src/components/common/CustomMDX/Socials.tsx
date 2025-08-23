@@ -62,10 +62,12 @@ const socials = [
   },
 ];
 
-const Socials = () => {
+const Socials = ({ hideText = false }: { hideText?: boolean }) => {
   return (
     <div className="flex flex-col gap-4 font-sans">
-      <p className="text-body text-secondary mb-0 mt-4">Socials:</p>
+      {!hideText && (
+        <p className="text-body text-secondary mb-0 mt-4">Socials:</p>
+      )}
       <div className="flex gap-4">
         {socials.map((social) => (
           <a

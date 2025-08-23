@@ -31,9 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${workSans.variable} antialiased max-w-2xl mx-auto px-[16px] md:px-[32px] lg:px-0`}
-      >
+      <body className={`${workSans.variable} antialiased`}>
         <GoogleAnalytics gaId={config.analytics.gaId} />
         <Analytics />
         <SpeedInsights />

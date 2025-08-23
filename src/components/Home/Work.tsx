@@ -1,8 +1,10 @@
-import AccentLink from "../common/AccentLink";
+import AccentLink from "@/components/common/AccentLink";
+import BorderWrapper from "@/components/common/BorderWrapper";
 
 interface WorkList {
   title: string;
   company: string;
+  companyLogo?: string;
   location: string;
   startDate: string;
   endDate: string;
@@ -15,6 +17,7 @@ const workList: WorkList[] = [
   {
     title: "Frontend Developer",
     company: "Victoria's Secret & Co.",
+    companyLogo: "/assets/logos/vs.png",
     location: "Bangalore, India (Full-time | Remote)",
     startDate: "June 2023",
     endDate: "Present",
@@ -73,6 +76,7 @@ const workList: WorkList[] = [
   {
     title: "Consultant",
     company: "GitHub",
+    companyLogo: "/assets/logos/github.png",
     location: "Bangalore, India (Freelance | Remote)",
     startDate: "January 2024",
     endDate: "October 2024",
@@ -115,6 +119,7 @@ const workList: WorkList[] = [
   {
     title: "DevRel Engineer",
     company: "GitHub",
+    companyLogo: "/assets/logos/github.png",
     location: "Bangalore, India (Internship | Remote)",
     startDate: "February 2022",
     endDate: "June 2023",
@@ -164,6 +169,7 @@ const workList: WorkList[] = [
   {
     title: "Software Engineer",
     company: "GrowthCX",
+    companyLogo: "/assets/logos/growth-cx.jpg",
     location: "Bangalore, India (Internship | Remote)",
     startDate: "March 2021",
     endDate: "January 2022",
@@ -200,36 +206,63 @@ const workList: WorkList[] = [
 
 const Work = () => {
   return (
-    <div className="flex flex-col gap-4 mt-8 font-sans">
-      <h2 className="text-heading font-bold">Work</h2>
-      <p className="text-body text-secondary">
-        Checkout my{" "}
-        <AccentLink
-          href="https://drive.google.com/file/d/1cYyG-tjDqpmwyxzEJaD1EEfPM1DHXAXn/view?usp=sharing"
-          isExternal
-        >
-          resume
-        </AccentLink>
-      </p>
-      <div className="flex flex-col gap-4">
-        {workList.map((work) => (
-          <div key={work.title} className="flex flex-col">
-            <h3 className="text-lg font-bold">
-              {work.title} -{" "}
-              <AccentLink href={work.link}>{work.company}</AccentLink>
-            </h3>
-            <div className="flex flex-col md:flex-row md:gap-2">
-              <p className="text-sm text-secondary">{work.location}</p>
-              <span className="hidden md:block text-sm text-secondary">|</span>
-              <p className="text-sm text-secondary">
-                {work.startDate} — {work.endDate}
+    <div className="flex flex-col font-sans">
+      <BorderWrapper padding="px-4">
+        <h2 className="text-heading font-bold">Work</h2>
+      </BorderWrapper>
+      <BorderWrapper padding="px-4" borderY="">
+        <p className="text-body text-secondary">
+          Checkout my{" "}
+          <AccentLink
+            href="https://drive.google.com/file/d/1cYyG-tjDqpmwyxzEJaD1EEfPM1DHXAXn/view?usp=sharing"
+            isExternal
+          >
+            resume
+          </AccentLink>
+        </p>
+      </BorderWrapper>
+      <div className="flex flex-col">
+        {workList.map((work, index) => (
+          <BorderWrapper
+            key={work.title}
+            borderY={index === workList.length - 1 ? "border-y" : "border-t"}
+          >
+            <div className="flex flex-col">
+              <div className="flex items-center gap-4">
+                <div className="bg-white w-8 md:w-12 h-8 md:h-12 rounded-sm aspect-square overflow-hidden p-1 border border-edge">
+                  <img
+                    src={work.companyLogo}
+                    alt={`${work.company} logo`}
+                    height={48}
+                    width={48}
+                    className="object-cover object-center"
+                  />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold leading-5">{work.title}</h3>
+                  <AccentLink
+                    className="text-lg leading-5 block font-bold"
+                    href={work.link}
+                  >
+                    {work.company}
+                  </AccentLink>
+                  <div className="flex flex-col md:flex-row md:gap-2">
+                    <p className="text-sm text-secondary">{work.location}</p>
+                    <span className="hidden md:block text-sm text-secondary">
+                      |
+                    </span>
+                    <p className="text-sm text-secondary">
+                      {work.startDate} — {work.endDate}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="pt-4">{work.description}</div>
+              <p className="text-sm text-secondary mt-2">
+                {work.technologies.join(" | ")}
               </p>
             </div>
-            <div className="mt-2">{work.description}</div>
-            <p className="text-sm text-secondary mt-2">
-              {work.technologies.join(" | ")}
-            </p>
-          </div>
+          </BorderWrapper>
         ))}
       </div>
     </div>

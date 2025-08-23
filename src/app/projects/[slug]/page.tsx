@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import { baseUrl } from "@/app/sitemap";
 import { CustomMDX } from "@/components/common/CustomMDX";
 import { getProjects } from "@/app/projects/utils";
+import BorderWrapper from "@/components/common/BorderWrapper";
+import Separator from "@/components/common/Separator";
 
 export async function generateStaticParams() {
   const projects = await getProjects();
@@ -75,19 +77,26 @@ export default async function Projects({
 
   return (
     <section className="font-sans">
-      <h1 className="font-semibold font-mono text-notes-h2 tracking-tighter">
-        {project.mdxSource.frontmatter.title}
-      </h1>
-      <div className="flex justify-between items-center mt-2 mb-8 text-sm ">
-        <p className="text-body text-neutral-600 dark:text-neutral-400 font-sans">
-          {project.mdxSource.frontmatter.tagline}
-        </p>
-      </div>
-      <article
-        className={`${styles.default} ${styles.anchor} prose-pre:bg-code-background`}
-      >
-        <CustomMDX source={project.mdxSource.content} />
-      </article>
+      <Separator />
+      <BorderWrapper padding="px-4">
+        <h1 className="font-semibold font-mono text-notes-h2 tracking-tighter">
+          {project.mdxSource.frontmatter.title}
+        </h1>
+      </BorderWrapper>
+      <BorderWrapper padding="px-4 py-1" borderY="">
+        <div className="flex justify-between items-center text-sm ">
+          <p className="text-body text-neutral-600 dark:text-neutral-400 font-sans">
+            {project.mdxSource.frontmatter.tagline}
+          </p>
+        </div>
+      </BorderWrapper>
+      <BorderWrapper>
+        <article
+          className={`${styles.default} ${styles.anchor} prose-pre:bg-code-background`}
+        >
+          <CustomMDX source={project.mdxSource.content} />
+        </article>
+      </BorderWrapper>
     </section>
   );
 }
