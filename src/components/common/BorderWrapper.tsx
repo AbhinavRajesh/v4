@@ -1,9 +1,9 @@
-import { JSX } from "react";
+import { ReactNode } from "react";
 
 interface BorderWrapper {
-  children: JSX.Element | JSX.Element[];
+  children: unknown;
   padding?: string;
-  borderY?: "border-t" | "border-b" | "border-y";
+  borderY?: "" | "border-t" | "border-b" | "border-y";
 }
 
 const BorderWrapper = ({
@@ -14,7 +14,7 @@ const BorderWrapper = ({
   return (
     <div className={`${borderY} border-edge px-2`}>
       <section className={`max-w-2xl mx-auto ${padding} border-x border-edge`}>
-        {children}
+        {children as ReactNode}
       </section>
     </div>
   );
