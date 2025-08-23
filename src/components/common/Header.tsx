@@ -32,7 +32,7 @@ const NavLink = ({
 
 const Header = () => {
   return (
-    <div className="pt-2 sticky inset-0 top-0 z-50 bg-background px-2">
+    <div className="pt-2 sticky inset-0 top-0 z-50 bg-background px-2 sm:px-0">
       <div className="border-y border-edge">
         <header className="flex justify-between items-center max-w-2xl mx-auto border-x border-edge px-4">
           <div className="flex h-full">

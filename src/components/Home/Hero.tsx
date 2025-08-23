@@ -7,7 +7,7 @@ import Separator from "@/components/common/Separator";
 const Hero = () => {
   return (
     <div className="flex flex-col font-sans">
-      <BorderWrapper padding="">
+      <BorderWrapper padding="" borderY="border-b">
         <div className="flex">
           <div className="border-r border-edge">
             <img
