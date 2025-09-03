@@ -214,7 +214,7 @@ const Work = () => {
         <p className="text-body text-secondary">
           Checkout my{" "}
           <AccentLink
-            href="https://drive.google.com/file/d/1cYyG-tjDqpmwyxzEJaD1EEfPM1DHXAXn/view?usp=sharing"
+            href="https://drive.google.com/file/d/1JfuaeO1OjC9YX4PWDryFwZJrrZIPBaaO/view?usp=sharing"
             isExternal
           >
             resume
