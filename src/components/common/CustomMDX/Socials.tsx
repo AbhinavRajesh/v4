@@ -71,6 +71,7 @@ const Socials = ({ hideText = false }: { hideText?: boolean }) => {
       <div className="flex gap-4">
         {socials.map((social) => (
           <a
+            aria-label={social.name}
             key={social.name}
             href={social.href}
             rel="noopener noreferrer"
