@@ -8,9 +8,9 @@ const Spotify = async () => {
   return (
     <div className="flex flex-col font-sans">
       <BorderWrapper padding="px-4" borderY="border-t">
-        <h3 className="text-heading text-foreground font-bold font-mono">
+        <h2 className="text-heading text-foreground font-bold font-mono">
           Spotify
-        </h3>
+        </h2>
       </BorderWrapper>
       <BorderWrapper>
         <p className="text-body text-foreground">

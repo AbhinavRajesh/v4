@@ -1,5 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
 import { getProjects } from "@/app/projects/utils";
+import Image from "next/image";
 import Link from "next/link";
 
 export type ProjectType = Awaited<ReturnType<typeof getProjects>>[number];
@@ -12,15 +12,16 @@ const ProjectCard = ({ project }: { project: ProjectType }) => {
     >
       <div className="flex flex-col gap-2">
         <div className="relative h-48 w-full overflow-hidden rounded-md flex items-center justify-center text-center text-background bg-foreground font-sans font-medium text-lg">
-          <img
-            src={project.mdxSource.frontmatter.image}
+          <Image
+            src={project.mdxSource.frontmatter.image!}
             alt={project.mdxSource.frontmatter.title}
             className="object-cover w-full h-full"
+            layout="fill"
           />
         </div>
-        <h3 className="text-lg font-bold">
+        <h2 className="text-lg font-bold">
           {project.mdxSource.frontmatter.title}
-        </h3>
+        </h2>
         <p className="text-sm text-foreground">
           {project.mdxSource.frontmatter.description}
         </p>
