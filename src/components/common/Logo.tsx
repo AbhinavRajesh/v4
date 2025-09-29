@@ -27,6 +27,7 @@ const Logo = ({ href = "" }: { href?: string }) => {
   return href.length > 0 ? (
     <Link
       href={href}
+      aria-label="Home"
       className="text-lg font-bold text-gray-900 dark:text-white"
     >
       <LogoSvg />
