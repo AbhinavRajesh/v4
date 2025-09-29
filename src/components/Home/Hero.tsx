@@ -11,7 +11,7 @@ const Hero = () => {
         <div className="flex">
           <div className="border-r border-edge">
             <img
-              src="/assets/dp.jpeg"
+              src="/assets/dp.webp"
               alt="A picture of meee"
               fetchPriority="high"
               className="size-32 sm:size-40 rounded-full p-1 border border-edge"

@@ -236,6 +236,7 @@ const Work = () => {
                     height={48}
                     width={48}
                     className="object-cover object-center"
+                    fetchPriority="low"
                   />
                 </div>
                 <div>
