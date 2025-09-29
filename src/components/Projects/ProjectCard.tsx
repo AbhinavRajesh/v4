@@ -13,6 +13,7 @@ const ProjectCard = ({ project }: { project: ProjectType }) => {
       <div className="flex flex-col gap-2">
         <div className="relative h-48 w-full overflow-hidden rounded-md flex items-center justify-center text-center text-background bg-foreground font-sans font-medium text-lg">
           <Image
+            fetchPriority="high"
             src={project.mdxSource.frontmatter.image!}
             alt={project.mdxSource.frontmatter.title}
             className="object-cover w-full h-full"

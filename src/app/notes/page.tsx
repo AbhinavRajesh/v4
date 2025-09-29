@@ -23,7 +23,11 @@ async function Notes() {
       <BorderWrapper>
         <p className="text-sm text-secondary">
           If you are looking for my old blog, you can find it{" "}
-          <AccentLink href="https://blog.abhinavrajesh.com" isExternal>
+          <AccentLink
+            href="https://blog.abhinavrajesh.com"
+            isExternal
+            aria-label="here at https://blog.abhinavrajesh.com"
+          >
             here
           </AccentLink>
           .
