@@ -1,10 +1,11 @@
 import AccentLink from "@/components/common/AccentLink";
 import BorderWrapper from "@/components/common/BorderWrapper";
+import Image from "next/image";
 
 interface WorkList {
   title: string;
   company: string;
-  companyLogo?: string;
+  companyLogo: string;
   location: string;
   startDate: string;
   endDate: string;
@@ -230,7 +231,7 @@ const Work = () => {
             <div className="flex flex-col">
               <div className="flex items-center gap-4">
                 <div className="bg-white w-8 md:w-12 h-8 md:h-12 rounded-sm aspect-square overflow-hidden p-1 border border-edge">
-                  <img
+                  <Image
                     src={work.companyLogo}
                     alt={`${work.company} logo`}
                     height={48}

@@ -3,18 +3,21 @@ import AccentLink from "@/components/common/AccentLink";
 import Socials from "@/components/common/CustomMDX/Socials";
 import BorderWrapper from "@/components/common/BorderWrapper";
 import Separator from "@/components/common/Separator";
+import Image from "next/image";
 
 const Hero = () => {
   return (
     <div className="flex flex-col font-sans">
       <BorderWrapper padding="" borderY="border-b">
         <div className="flex">
-          <div className="border-r border-edge">
-            <img
-              src="/assets/dp.webp"
-              alt="A picture of meee"
+          <div className="relative border-r border-edge">
+            <Image
+              src="/assets/dp.jpeg"
+              alt="A picture of me"
               fetchPriority="high"
               className="size-32 sm:size-40 rounded-full p-1 border border-edge"
+              width={160}
+              height={160}
             />
           </div>
           <div className="flex flex-col justify-end flex-1">
