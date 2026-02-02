@@ -25,10 +25,10 @@ test.call({ foo: 'bar' }, 10, 20);
 ## apply()
 ```ts
 function test(...arguments) {
-    console.log(this.foo, arguments); // bar 10 20
+    console.log(this.foo, ...arguments); // bar 10 20
 }
 
-test.apply({ foo: 'bar' }, 10, 20);
+test.apply({ foo: 'bar' }, [10, 20]);
 ```
 
 ## bind()
