@@ -5,6 +5,8 @@ import BorderWrapper from "@/components/common/BorderWrapper";
 const Spotify = async () => {
   const { topTracks = [] } = await getSpotifyData();
 
+  if (topTracks.length === 0) return null;
+
   return (
     <div className="flex flex-col font-sans">
       <BorderWrapper padding="px-4" borderY="border-t">
