@@ -16,12 +16,21 @@ const Footer = () => {
             <p className="text-sm text-secondary">
               &#169; {year} {config.userData.name}
             </p>
-            <AccentLink
-              className="text-secondary text-sm"
-              href="https://github.com/AbhinavRajesh/v4"
-            >
-              Source Code
-            </AccentLink>
+            <div className="flex items-center gap-2 text-sm text-secondary">
+              <AccentLink
+                className="text-secondary text-sm"
+                href="https://github.com/AbhinavRajesh/v4"
+              >
+                Source Code
+              </AccentLink>
+              <span>|</span>
+              <AccentLink
+                className="text-secondary text-sm"
+                href="/llms.txt"
+              >
+                llms.txt
+              </AccentLink>
+            </div>
           </div>
           <Socials hideText />
         </div>

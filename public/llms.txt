@@ -1,0 +1,329 @@
+# Abhinav Rajesh - Portfolio
+
+> Full-stack Software Engineer | Frontend Developer @ Victoria's Secret & Co.
+> https://abhinavrajesh.com
+> Last updated: February 4, 2026
+
+## Overview
+
+Abhinav Rajesh is a full-stack software engineer based in India, currently working as a Frontend Developer at Victoria's Secret & Co. He specializes in building fast, accessible, and user-friendly web experiences with expertise spanning from frontend to backend development.
+
+**Core Focus**: Building fast, accessible web experiences—front to back
+
+**Current Role**: Frontend Developer at Victoria's Secret & Co. (June 2023 - Present)
+
+**Location**: India
+
+**Education**: Bachelor of Technology in Computer Science, School of Engineering, CUSAT (2019-2023, GPA: 9.05/10)
+
+## Site Structure
+
+This portfolio website is built with Next.js 15 and TypeScript, showcasing Abhinav's professional work, personal projects, and technical writing.
+
+### Main Sections
+
+**Home (/)**
+- Hero section with professional introduction and current role
+- Complete work experience timeline
+- Educational background
+- Quick overview of expertise and achievements
+
+**About (/about)**
+- Detailed personal biography and professional philosophy
+- Real-time Spotify integration showing current/recent listening activity
+- Personal interests and values
+- Contact information and social links
+
+**Projects (/projects)**
+- Showcase of major personal and professional projects
+- Each project includes detailed case studies with tech stack, achievements, and metrics
+- Live demos and GitHub repositories
+- 4 featured projects with significant user impact
+
+**Notes (/notes)**
+- Technical blog posts and articles
+- Tutorials on web development topics
+- Code examples and practical implementations
+- Topics include React, Next.js, JavaScript fundamentals, CSS/SASS, and more
+- Links to older blog content at blog.abhinavrajesh.com
+
+## Work Experience
+
+### Victoria's Secret & Co.
+**Role**: Frontend Developer
+**Duration**: June 2023 - Present
+**Location**: Remote, India
+
+**Key Achievements**:
+- Increased user retention by 10% through comprehensive accessibility improvements (WCAG AA compliance, semantic HTML, ARIA labels, keyboard navigation)
+- Delivered $13.6M business impact through "Keep me signed in" feature implementation
+- Generated $12.6M business impact by implementing OTP authentication for user verification
+- Saved $70K annually by migrating analytics from Tealium to EDDL (Event-Driven Data Layer)
+- Built and maintained customer-facing e-commerce features for a Fortune 500 company
+- Worked with React, Next.js, TypeScript, and modern frontend tooling
+
+### GitHub (Consultant)
+**Role**: Consultant
+**Duration**: January 2024 - October 2024
+**Location**: Remote
+
+**Key Achievements**:
+- Built the official GitHub Constellation India 2024 website
+- Created platform serving millions of developers across India
+- Delivered high-performance, accessible web experience for major developer conference
+- Worked with Next.js, TypeScript, and GitHub's design systems
+
+### GitHub
+**Role**: Developer Relations Engineer Intern
+**Duration**: February 2022 - June 2023
+**Location**: Remote
+
+**Key Achievements**:
+- Built and launched githubindia.com, serving over 10 million developers in India
+- Developed githubbrasil.com, reaching 3 million+ developers in Brazil
+- Created localized content and experiences for regional developer communities
+- Collaborated with cross-functional teams on developer advocacy initiatives
+- Worked with React, Next.js, and content management systems
+
+### GrowthCX
+**Role**: Software Engineer Intern
+**Duration**: March 2021 - January 2022
+**Location**: Remote
+
+**Key Achievements**:
+- Built the complete frontend for SuiteJar, a B2B SaaS product
+- Developed user interfaces for business analytics and customer experience tools
+- Worked with React, TypeScript, and modern frontend frameworks
+- Collaborated with backend team on API integration and data visualization
+
+## Featured Projects
+
+### Aura - Mood Tracking Application
+**Description**: A comprehensive mood tracking application that helps users understand and improve their mental well-being through daily mood logging, pattern analysis, and insights.
+
+**Tech Stack**: Next.js, React, TypeScript, TailwindCSS, Supabase (PostgreSQL), Vercel
+
+**Key Metrics**:
+- 600+ active users
+- 100+ upvotes on ProductHunt
+- 45+ GitHub stars
+- Featured on multiple developer communities
+
+**Impact**: Helps users track their emotional patterns, identify triggers, and make data-driven decisions about their mental health.
+
+**Links**:
+- Project page: https://abhinavrajesh.com/projects/aura
+- Live demo: Available on project page
+- GitHub: github.com/AbhinavRajesh (check repositories)
+
+### Chatbotish - Website Chat Widget
+**Description**: An embeddable chat widget for websites that enables easy integration of conversational interfaces. Helps businesses add chat functionality to their websites without complex backend infrastructure.
+
+**Tech Stack**: React, TypeScript, WebSocket, Node.js, MongoDB
+
+**Key Metrics**:
+- 1,000+ website visits
+- 65+ upvotes on ProductHunt
+- 25+ GitHub stars
+- Used by multiple small businesses and personal websites
+
+**Impact**: Simplifies customer support and user engagement for website owners with an easy-to-integrate chat solution.
+
+**Links**:
+- Project page: https://abhinavrajesh.com/projects/chatbotish
+- Live demo: Available on project page
+
+### CryptoStack - Decentralized Q&A Platform
+**Description**: A blockchain-based question-and-answer platform with integrated NFT marketplace. Built on decentralized technologies to create a transparent, community-driven knowledge sharing platform.
+
+**Tech Stack**: Next.js, Solidity, Ethereum, IPFS, Web3.js, Hardhat
+
+**Key Achievement**: 
+- 2nd Prize winner in ByteSynergy Hackathon
+- Innovative combination of Q&A functionality with NFT rewards
+- Demonstrates expertise in Web3 and blockchain development
+
+**Impact**: Showcases potential for decentralized knowledge sharing with token-based incentive mechanisms.
+
+**Links**:
+- Project page: https://abhinavrajesh.com/projects/cryptostack
+- GitHub: Available on project page
+
+### Sahaay - COVID-19 Resource Finder
+**Description**: Emergency resource finder built during the COVID-19 pandemic to help people in India find critical medical resources including hospital beds, oxygen cylinders, medicines, and ambulances.
+
+**Tech Stack**: Next.js, React, TypeScript, Firebase, Google Maps API
+
+**Key Metrics**:
+- 1,500+ website visits during peak pandemic period
+- 60+ upvotes on ProductHunt
+- Helped connect people with life-saving medical resources
+- Featured in local news and community groups
+
+**Impact**: Provided critical service during emergency situation, helping families find medical resources when they needed them most.
+
+**Links**:
+- Project page: https://abhinavrajesh.com/projects/sahaay
+
+## Technical Stack
+
+### Frontend Technologies
+- **Framework**: Next.js 15.3.8 (App Router, React Server Components)
+- **UI Library**: React 19.0.0
+- **Language**: TypeScript 5 (strict mode)
+- **Styling**: TailwindCSS v4 with custom design system
+- **UI Components**: Lucide React icons, custom component library
+- **Fonts**: Work Sans (Google Fonts), monospace for headings
+
+### Content & Data Management
+- **Content**: MDX via next-mdx-remote for blog posts and project pages
+- **Code Highlighting**: sugar-high for syntax highlighting
+- **Database**: Redis (ioredis) for caching and data storage
+- **APIs**: Spotify API integration for real-time music status
+
+### Performance & Analytics
+- **Analytics**: Vercel Analytics, Google Analytics
+- **Performance**: Vercel Speed Insights, custom Web Vitals tracking
+- **Optimization**: Image optimization, code splitting, lazy loading
+- **SEO**: Automatic sitemap generation, robots.txt, Open Graph images
+
+### Development Tools
+- **Version Control**: Git, GitHub
+- **Code Quality**: ESLint, Prettier
+- **Build Tools**: Next.js build system, Turbopack for development
+- **Deployment**: Vercel (serverless, edge functions)
+- **CI/CD**: Automated deployments via Vercel
+
+### Additional Integrations
+- **Third-party**: Google Analytics (@next/third-parties)
+- **Utilities**: clsx, tailwind-merge for className management
+- **Type Safety**: Full TypeScript coverage with strict configuration
+
+## Technical Writing & Blog
+
+Abhinav maintains a technical blog with articles covering practical web development topics:
+
+**Sample Articles**:
+- "How I Built CLI Version of Wordle Game" - Tutorial on building command-line games with Node.js
+- "Adding SASS/SCSS to Your React/Next.js Application" - Guide to styling in modern React applications
+- "Difference Between Call, Bind, Apply" - JavaScript fundamentals explained
+
+**Topics Covered**:
+- React and Next.js best practices
+- JavaScript fundamentals and advanced concepts
+- CSS, SASS, and modern styling approaches
+- Web development tutorials and guides
+- Building real-world applications
+
+**Blog Links**:
+- Current blog/notes: https://abhinavrajesh.com/notes
+- Older blog content: https://blog.abhinavrajesh.com
+
+## Education
+
+**Bachelor of Technology in Computer Science**
+- Institution: School of Engineering, CUSAT (Cochin University of Science and Technology)
+- Duration: 2019 - 2023
+- GPA: 9.05/10
+- Focus: Computer Science, Software Engineering, Web Development
+
+## Skills & Expertise
+
+### Frontend Development
+- React, Next.js, TypeScript
+- Modern JavaScript (ES6+)
+- HTML5, CSS3, SASS/SCSS
+- TailwindCSS, CSS-in-JS
+- Responsive design, mobile-first approach
+- Web accessibility (WCAG compliance)
+- Performance optimization
+
+### Backend Development
+- Node.js, Express
+- RESTful API design
+- Database design (PostgreSQL, MongoDB, Redis)
+- Authentication & authorization
+- WebSocket, real-time applications
+
+### Web3 & Blockchain
+- Solidity smart contracts
+- Ethereum development
+- Web3.js, ethers.js
+- IPFS, decentralized storage
+- NFT development
+
+### Tools & Platforms
+- Git, GitHub
+- Vercel, Netlify deployment
+- Firebase, Supabase
+- Docker basics
+- CI/CD pipelines
+- Analytics and monitoring tools
+
+### Soft Skills
+- Product thinking and business impact focus
+- Cross-functional collaboration
+- Developer advocacy and community building
+- Technical writing and documentation
+- Accessibility-first development approach
+
+## Contact & Social Links
+
+**Email**: abhinavrajesh49@gmail.com
+
+**GitHub**: https://github.com/AbhinavRajesh
+
+**Twitter/X**: https://twitter.com/_AbhinavRajesh_
+
+**LinkedIn**: https://linkedin.com/in/abhinavrajesh
+
+**Website**: https://abhinavrajesh.com
+
+**Older Blog**: https://blog.abhinavrajesh.com
+
+## Additional Information
+
+### Design Philosophy
+- Performance-first approach to web development
+- Strong emphasis on accessibility and inclusive design
+- User experience as primary focus
+- Clean, minimal design aesthetic with attention to detail
+- Mobile-first responsive design
+
+### Professional Approach
+- Focused on delivering measurable business impact
+- Data-driven decision making
+- Continuous learning and skill development
+- Open source contribution and community engagement
+- Building products that solve real user problems
+
+### Portfolio Features
+- **SEO Optimized**: Automatic sitemap generation, proper meta tags, Open Graph images
+- **Performance**: Optimized images, code splitting, edge caching
+- **Accessibility**: WCAG AA compliant, semantic HTML, keyboard navigation
+- **Analytics**: Integrated tracking for user insights and performance monitoring
+- **Modern Stack**: Built with latest Next.js 15 and React 19 features
+
+### Site Resources
+- **Sitemap**: https://abhinavrajesh.com/sitemap.xml
+- **Robots**: https://abhinavrajesh.com/robots.txt
+- **RSS/Feed**: Check notes section for latest content
+
+## About This Portfolio
+
+This is the fourth iteration of Abhinav's portfolio, built with Next.js and MDX. The portfolio was inspired by chanhdai.com and represents a modern approach to developer portfolios with a focus on performance, accessibility, and clean design.
+
+**Tech Highlights**:
+- Next.js 15 with App Router and React Server Components
+- Full TypeScript implementation
+- MDX for content management
+- TailwindCSS v4 for styling
+- Custom design system with consistent patterns
+- Real-time integrations (Spotify API)
+- Comprehensive analytics and performance tracking
+
+The portfolio serves as both a professional showcase and a demonstration of modern web development best practices, featuring enterprise-level code quality and attention to detail in both design and implementation.
+
+---
+
+For more information or to get in touch with Abhinav Rajesh, visit https://abhinavrajesh.com or reach out via email at abhinavrajesh49@gmail.com
