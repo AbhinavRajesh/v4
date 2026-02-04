@@ -14,10 +14,15 @@ export default async function sitemap() {
     lastModified: new Date().toISOString().split("T")[0],
   }));
 
-  const routes = ["", "/notes", "/projects"].map((route) => ({
+  const routes = ["", "/notes", "/projects", "/about"].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date().toISOString().split("T")[0],
   }));
 
-  return [...routes, ...blogs, ...projects];
+  const staticFiles = ["/llms.txt"].map((route) => ({
+    url: `${baseUrl}${route}`,
+    lastModified: new Date().toISOString().split("T")[0],
+  }));
+
+  return [...routes, ...staticFiles, ...blogs, ...projects];
 }
