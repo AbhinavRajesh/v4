@@ -22,6 +22,11 @@ export const metadata: Metadata = {
     default: `${config.userData.name} - ${config.userData.description}`,
   },
   description: config.userData.description,
+  alternates: {
+    types: {
+      'text/plain': '/llms.txt',
+    },
+  },
 };
 
 export default function RootLayout({
