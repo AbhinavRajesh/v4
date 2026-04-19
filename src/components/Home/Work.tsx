@@ -79,6 +79,61 @@ const workList: WorkList[] = [
     company: "GitHub",
     companyLogo: "/assets/logos/github.png",
     location: "Bangalore, India (Freelance | Remote)",
+    startDate: "February 2026",
+    endDate: "April 2026",
+    description: (
+      <ul className="gap-2 list-disc list-outside pl-4 text-md">
+        <li>
+          Migrated the GitHub Universe 2025 website codebase to build the{" "}
+          <span className="font-semibold">
+            GitHub Constellation India 2026
+          </span>{" "}
+          website (
+          <AccentLink href="https://githubconstellation.com" isExternal>
+            githubconstellation.com
+          </AccentLink>
+          ) — GitHub&apos;s one-day developer event celebrating AI-powered
+          development, featuring speakers like{" "}
+          <span className="font-semibold">
+            Jay Parikh (EVP, Core AI at Microsoft)
+          </span>{" "}
+          and{" "}
+          <span className="font-semibold">Kyle Daigle (COO, GitHub)</span>.
+        </li>
+        <li>
+          Designed and developed session listing and individual session detail
+          pages, along with the registration page.
+        </li>
+        <li>
+          Designed Open Graph images for sessions in Figma.
+        </li>
+        <li>
+          Added embedded YouTube live keynote streaming support.
+        </li>
+        <li>
+          Ensured accessibility compliance and optimized image assets for
+          performance.
+        </li>
+      </ul>
+    ),
+    technologies: [
+      "React",
+      "NextJS",
+      "TypeScript",
+      "Primer Style",
+      "GSAP",
+      "Figma",
+      "Git",
+      "GitHub Actions",
+      "GitHub Pages",
+    ],
+    link: "https://github.com",
+  },
+  {
+    title: "Consultant",
+    company: "GitHub",
+    companyLogo: "/assets/logos/github.png",
+    location: "Bangalore, India (Freelance | Remote)",
     startDate: "January 2024",
     endDate: "October 2024",
     description: (
