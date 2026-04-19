@@ -1,6 +1,10 @@
+"use client";
+
+import { useState } from "react";
 import AccentLink from "@/components/common/AccentLink";
 import BorderWrapper from "@/components/common/BorderWrapper";
 import Image from "next/image";
+import { ChevronDown } from "lucide-react";
 
 interface WorkList {
   title: string;
@@ -205,6 +209,72 @@ const workList: WorkList[] = [
   },
 ];
 
+const WorkCard = ({
+  work,
+  defaultExpanded,
+  isLast,
+}: {
+  work: WorkList;
+  defaultExpanded: boolean;
+  isLast: boolean;
+}) => {
+  const [isExpanded, setIsExpanded] = useState(defaultExpanded);
+
+  return (
+    <BorderWrapper borderY={isLast ? "border-y" : "border-t"}>
+      <div className="flex flex-col">
+        <button
+          type="button"
+          onClick={() => setIsExpanded((prev) => !prev)}
+          className="flex items-center gap-4 cursor-pointer w-full text-left"
+        >
+          <div className="bg-white w-8 md:w-12 h-8 md:h-12 rounded-sm aspect-square overflow-hidden p-1 border border-edge">
+            <Image
+              src={work.companyLogo}
+              alt={`${work.company} logo`}
+              height={48}
+              width={48}
+              className="object-cover object-center"
+              fetchPriority="low"
+            />
+          </div>
+          <div className="flex-1">
+            <h3 className="text-lg font-bold leading-5">{work.title}</h3>
+            <span className="text-lg leading-5 block font-bold text-accent">
+              {work.company}
+            </span>
+            <div className="flex flex-col md:flex-row md:gap-2">
+              <p className="text-sm text-secondary">{work.location}</p>
+              <span className="hidden md:block text-sm text-secondary">|</span>
+              <p className="text-sm text-secondary">
+                {work.startDate} — {work.endDate}
+              </p>
+            </div>
+          </div>
+          <ChevronDown
+            size={20}
+            className={`text-secondary transition-transform duration-300 ${
+              isExpanded ? "rotate-180" : ""
+            }`}
+          />
+        </button>
+        <div
+          className={`grid transition-all duration-300 ease-in-out ${
+            isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          }`}
+        >
+          <div className="overflow-hidden min-h-0">
+            <div className="pt-4">{work.description}</div>
+          </div>
+        </div>
+        <p className="text-sm text-secondary mt-2">
+          {work.technologies.join(" | ")}
+        </p>
+      </div>
+    </BorderWrapper>
+  );
+};
+
 const Work = () => {
   return (
     <div className="flex flex-col font-sans">
@@ -224,47 +294,12 @@ const Work = () => {
       </BorderWrapper>
       <div className="flex flex-col">
         {workList.map((work, index) => (
-          <BorderWrapper
-            key={work.title}
-            borderY={index === workList.length - 1 ? "border-y" : "border-t"}
-          >
-            <div className="flex flex-col">
-              <div className="flex items-center gap-4">
-                <div className="bg-white w-8 md:w-12 h-8 md:h-12 rounded-sm aspect-square overflow-hidden p-1 border border-edge">
-                  <Image
-                    src={work.companyLogo}
-                    alt={`${work.company} logo`}
-                    height={48}
-                    width={48}
-                    className="object-cover object-center"
-                    fetchPriority="low"
-                  />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold leading-5">{work.title}</h3>
-                  <AccentLink
-                    className="text-lg leading-5 block font-bold"
-                    href={work.link}
-                  >
-                    {work.company}
-                  </AccentLink>
-                  <div className="flex flex-col md:flex-row md:gap-2">
-                    <p className="text-sm text-secondary">{work.location}</p>
-                    <span className="hidden md:block text-sm text-secondary">
-                      |
-                    </span>
-                    <p className="text-sm text-secondary">
-                      {work.startDate} — {work.endDate}
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="pt-4">{work.description}</div>
-              <p className="text-sm text-secondary mt-2">
-                {work.technologies.join(" | ")}
-              </p>
-            </div>
-          </BorderWrapper>
+          <WorkCard
+            key={`${work.company}-${work.startDate}`}
+            work={work}
+            defaultExpanded={index === 0}
+            isLast={index === workList.length - 1}
+          />
         ))}
       </div>
     </div>
