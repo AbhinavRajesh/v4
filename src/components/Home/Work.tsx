@@ -80,7 +80,7 @@ const workList: WorkList[] = [
         </li>
       </ul>
     ),
-    technologies: ["React", "JavaScript", "Jest", "Git", "JSDoc"],
+    technologies: ["React", "React Native", "JavaScript", "TypeScript", "TailwindCSS", "NativeWind", "GluestackUI", "Jest", "Git", "JSDoc"],
     link: "https://www.victoriassecret.com",
   },
   {
