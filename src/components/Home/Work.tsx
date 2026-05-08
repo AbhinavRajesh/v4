@@ -66,8 +66,17 @@ const workList: WorkList[] = [
           hands-on mentoring.
         </li>
         <li>
-          Currently assisting in the migration of the codebase from React 16 to
-          React 18.
+          Contributed to the team effort of migrating the codebase from React 16
+          to React 18.
+        </li>
+        <li>
+          <span className="font-semibold">Core contributor</span> on the
+          architecture team for the{" "}
+          <span className="font-semibold">
+            UFE (Unified Frontend Experience)
+          </span>{" "}
+          initiative — migrating the codebase from React to React Native to
+          establish a single shared codebase for both web and app.
         </li>
       </ul>
     ),
