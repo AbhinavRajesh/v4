@@ -37,6 +37,25 @@
 html {
   color-scheme: light dark;
   scrollbar-gutter: stable;
+  interpolate-size: allow-keywords;
+}
+
+details::details-content {
+  block-size: 0;
+  overflow: clip;
+  transition:
+    block-size 280ms ease,
+    content-visibility 280ms ease allow-discrete;
+}
+
+details[open]::details-content {
+  block-size: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  details::details-content {
+    transition: none;
+  }
 }
 
 @keyframes status-pulse {
