@@ -51,18 +51,27 @@ const Project = async ({
   const project = (await getProjects()).find((p) => p.slug === slug);
   if (!project) notFound();
 
-  const { title, tagline, github_repo } = project.mdxSource.frontmatter;
+  const { title, tagline, github_repo, live_url } =
+    project.mdxSource.frontmatter;
+
+  const displayUrl = (url: string) =>
+    url.replace(/^https?:\/\//, "").replace(/\/$/, "");
 
   return (
     <article className="space-y-8">
       <header className="space-y-2">
         <h1 className="text-2xl font-medium tracking-tight">{title}</h1>
         {tagline && <p className="text-sm text-muted">{tagline}</p>}
-        {github_repo && (
-          <p className="font-mono text-xs">
-            <AccentLink href={`https://github.com/${github_repo}`}>
-              github.com/{github_repo}
-            </AccentLink>
+        {(github_repo || live_url) && (
+          <p className="flex flex-wrap gap-x-3 gap-y-1 font-mono text-xs">
+            {github_repo && (
+              <AccentLink href={`https://github.com/${github_repo}`}>
+                github.com/{github_repo}
+              </AccentLink>
+            )}
+            {live_url && (
+              <AccentLink href={live_url}>{displayUrl(live_url)}</AccentLink>
+            )}
           </p>
         )}
       </header>

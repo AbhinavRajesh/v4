@@ -12,6 +12,7 @@ export type ProjectMetadata = {
   description: string;
   image?: string;
   year?: string;
+  live_url?: string;
 };
 
 export function getProjects() {
