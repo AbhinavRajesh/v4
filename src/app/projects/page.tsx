@@ -1,37 +1,44 @@
-import ProjectCard from "@/components/Projects/ProjectCard";
-import { getProjects } from "@/app/projects/utils";
+import Link from "next/link";
 import { Metadata } from "next";
-import BorderWrapper from "@/components/common/BorderWrapper";
-import Separator from "@/components/common/Separator";
+import { getProjects } from "@/app/projects/utils";
 
 export const metadata: Metadata = {
   title: "Projects",
-  description: "My personal projects",
+  description: "Personal projects.",
 };
 
-const Project = async () => {
+const Projects = async () => {
   const projects = await getProjects();
 
   return (
-    <div className="flex flex-col font-sans">
-      <Separator />
-      <BorderWrapper padding="px-4" borderY="border-t">
-        <h1 className="text-heading font-bold font-mono">Projects</h1>
-      </BorderWrapper>
-      <BorderWrapper padding="px-4 py-1">
-        <p className="text-body">
-          Here are some of the projects I&apos;ve worked on.
+    <div className="space-y-10">
+      <header className="space-y-2">
+        <h1 className="text-xl font-medium">Projects</h1>
+        <p className="text-sm text-muted">
+          Things I&apos;ve built outside of work.
         </p>
-      </BorderWrapper>
-      <BorderWrapper padding="" borderY="border-b">
-        <div className="grid grid-cols-1 md:grid-cols-2">
-          {projects.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
-          ))}
-        </div>
-      </BorderWrapper>
+      </header>
+
+      <ul className="divide-y divide-subtle">
+        {projects.map((project) => (
+          <li key={project.slug}>
+            <Link
+              href={`/projects/${project.slug}`}
+              className="group flex flex-col gap-1 py-4"
+            >
+              <span className="text-foreground transition-colors group-hover:text-accent">
+                {project.mdxSource.frontmatter.title}
+              </span>
+              <span className="text-sm text-muted">
+                {project.mdxSource.frontmatter.tagline ||
+                  project.mdxSource.frontmatter.short_description}
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
 
-export default Project;
+export default Projects;

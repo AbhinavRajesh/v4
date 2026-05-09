@@ -1,6 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { TopTracks } from "@/components/About/Spotify/utils";
 import { stringify } from "querystring";
+
+export type TopTracks = {
+  name: string;
+  url: string;
+  imageUrl: string;
+  artists: { name: string }[];
+  explicit?: boolean;
+};
 
 const getTopTracks = async (
   accessToken: string

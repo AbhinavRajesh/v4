@@ -1,16 +1,12 @@
 import { notFound } from "next/navigation";
 import { baseUrl } from "@/app/sitemap";
-import { CustomMDX } from "@/components/common/CustomMDX";
+import { Mdx } from "@/components/mdx";
 import { getProjects } from "@/app/projects/utils";
-import BorderWrapper from "@/components/common/BorderWrapper";
-import Separator from "@/components/common/Separator";
+import AccentLink from "@/components/accent-link";
 
 export async function generateStaticParams() {
   const projects = await getProjects();
-
-  return projects.map((project) => ({
-    slug: project.slug,
-  }));
+  return projects.map((project) => ({ slug: project.slug }));
 }
 
 export async function generateMetadata({
@@ -19,13 +15,8 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const project = (await getProjects()).find(
-    (project) => project.slug === slug
-  );
-
-  if (!project) {
-    return;
-  }
+  const project = (await getProjects()).find((p) => p.slug === slug);
+  if (!project) return;
 
   const { title, description, image } = project.mdxSource.frontmatter;
   const ogImage = image
@@ -40,11 +31,7 @@ export async function generateMetadata({
       description,
       type: "article",
       url: `${baseUrl}/projects/${project.slug}`,
-      images: [
-        {
-          url: ogImage,
-        },
-      ],
+      images: [{ url: ogImage }],
     },
     twitter: {
       card: "summary_large_image",
@@ -55,48 +42,35 @@ export async function generateMetadata({
   };
 }
 
-const styles = {
-  default: "prose dark:prose-invert font-sans prose-pre:leading-relaxed",
-  anchor:
-    "prose-a:text-accent prose-a:font-semibold prose-a:dark:font-medium prose-a:underline prose-a:hover:text-accent/80 prose-a:transition-all prose-a:duration-150 prose-a:ease-in-out prose-a:underline-offset-4",
-};
-
-export default async function Projects({
+const Project = async ({
   params,
 }: {
   params: Promise<{ slug: string }>;
-}) {
+}) => {
   const { slug } = await params;
-  const project = (await getProjects()).find(
-    (project) => project.slug === slug
-  );
+  const project = (await getProjects()).find((p) => p.slug === slug);
+  if (!project) notFound();
 
-  if (!project) {
-    notFound();
-  }
+  const { title, tagline, github_repo } = project.mdxSource.frontmatter;
 
   return (
-    <section className="font-sans">
-      <Separator />
-      <BorderWrapper padding="px-4">
-        <h1 className="font-semibold font-mono text-notes-h2 tracking-tighter">
-          {project.mdxSource.frontmatter.title}
-        </h1>
-      </BorderWrapper>
-      <BorderWrapper padding="px-4 py-1" borderY="">
-        <div className="flex justify-between items-center text-sm ">
-          <p className="text-body text-neutral-600 dark:text-neutral-400 font-sans">
-            {project.mdxSource.frontmatter.tagline}
+    <article className="space-y-8">
+      <header className="space-y-2">
+        <h1 className="text-2xl font-medium tracking-tight">{title}</h1>
+        {tagline && <p className="text-sm text-muted">{tagline}</p>}
+        {github_repo && (
+          <p className="font-mono text-xs">
+            <AccentLink href={`https://github.com/${github_repo}`}>
+              github.com/{github_repo}
+            </AccentLink>
           </p>
-        </div>
-      </BorderWrapper>
-      <BorderWrapper>
-        <article
-          className={`${styles.default} ${styles.anchor} prose-pre:bg-code-background`}
-        >
-          <CustomMDX source={project.mdxSource.content} />
-        </article>
-      </BorderWrapper>
-    </section>
+        )}
+      </header>
+      <div className="text-foreground">
+        <Mdx source={project.mdxSource.content} />
+      </div>
+    </article>
   );
-}
+};
+
+export default Project;

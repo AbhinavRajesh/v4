@@ -1,68 +1,55 @@
 import Link from "next/link";
-import { getNotes } from "@/app/notes/utils";
-import AccentLink from "@/components/common/AccentLink";
-import { formatDate } from "@/utils";
 import { Metadata } from "next";
-import Separator from "@/components/common/Separator";
-import BorderWrapper from "@/components/common/BorderWrapper";
+import { getNotes } from "@/app/notes/utils";
+import { formatDate } from "@/utils";
+import AccentLink from "@/components/accent-link";
 
 export const metadata: Metadata = {
   title: "Notes",
-  description: "My notes on various topics, mostly about programming",
+  description: "Notes on programming, the web, and things I'm building.",
 };
 
-async function Notes() {
+const Notes = async () => {
   const notes = await getNotes();
+  const sorted = notes.sort(
+    (a, b) =>
+      new Date(b.mdxSource.frontmatter.publishedAt).getTime() -
+      new Date(a.mdxSource.frontmatter.publishedAt).getTime(),
+  );
 
   return (
-    <div className="flex flex-col font-sans">
-      <Separator />
-      <BorderWrapper padding="px-4" borderY="border-t">
-        <h1 className="text-heading">Notes</h1>
-      </BorderWrapper>
-      <BorderWrapper>
-        <p className="text-sm text-secondary">
-          If you are looking for my old blog, you can find it{" "}
-          <AccentLink
-            href="https://blog.abhinavrajesh.com"
-            isExternal
-            aria-label="here at https://blog.abhinavrajesh.com"
-          >
-            here
+    <div className="space-y-10">
+      <header className="space-y-2">
+        <h1 className="text-xl font-medium">Notes</h1>
+        <p className="text-sm text-muted">
+          Things I&apos;ve been thinking about, mostly programming. Looking for
+          older posts? They&apos;re archived at{" "}
+          <AccentLink href="https://blog.abhinavrajesh.com">
+            blog.abhinavrajesh.com
           </AccentLink>
           .
         </p>
-      </BorderWrapper>
-      {notes
-        .sort((a, b) => {
-          if (
-            new Date(a.mdxSource.frontmatter.publishedAt) >
-            new Date(b.mdxSource.frontmatter.publishedAt)
-          ) {
-            return -1;
-          }
-          return 1;
-        })
-        .map((post) => (
-          <BorderWrapper key={post.slug} padding="" borderY="border-b">
+      </header>
+
+      <ul className="divide-y divide-subtle">
+        {sorted.map((note) => (
+          <li key={note.slug}>
             <Link
-              className="flex flex-col space-y-1 group w-full p-4"
-              href={`/notes/${post.slug}`}
+              href={`/notes/${note.slug}`}
+              className="group flex items-baseline justify-between gap-4 py-3"
             >
-              <h2 className="text-notes-h4 leading-normal font-bold font-sans group-hover:text-foreground/80 transition-all duration-150 ease-in-out">
-                {post.mdxSource.frontmatter.title}
-              </h2>
-              <p className="text-secondary text-xs group-hover:text-secondary/80 transition-all duration-150 ease-in-out">
-                {formatDate(post.mdxSource.frontmatter.publishedAt, false)}
-              </p>
-              <p className="text-foreground text-sm group-hover:text-foreground/80 transition-all duration-150 ease-in-out">
-                {post.mdxSource.frontmatter.summary}
-              </p>
+              <span className="text-foreground transition-colors group-hover:text-accent">
+                {note.mdxSource.frontmatter.title}
+              </span>
+              <span className="shrink-0 font-mono text-xs text-muted">
+                {formatDate(note.mdxSource.frontmatter.publishedAt)}
+              </span>
             </Link>
-          </BorderWrapper>
+          </li>
         ))}
+      </ul>
     </div>
   );
-}
+};
 
 export default Notes;

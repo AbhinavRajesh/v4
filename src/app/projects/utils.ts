@@ -1,7 +1,7 @@
 import { getMDXData } from "@/utils";
 import path from "path";
 
-type Metadata = {
+export type ProjectMetadata = {
   title: string;
   github_repo: string;
   tagline: string;
@@ -11,8 +11,11 @@ type Metadata = {
   tags: string[];
   description: string;
   image?: string;
+  year?: string;
 };
 
 export function getProjects() {
-  return getMDXData<Metadata>(path.join(process.cwd(), "src", "projects"));
+  return getMDXData<ProjectMetadata>(
+    path.join(process.cwd(), "src", "projects"),
+  );
 }

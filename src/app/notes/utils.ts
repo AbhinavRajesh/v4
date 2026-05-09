@@ -1,7 +1,7 @@
 import { getMDXData } from "@/utils";
 import path from "path";
 
-type Metadata = {
+export type NoteMetadata = {
   title: string;
   publishedAt: string;
   summary: string;
@@ -9,5 +9,5 @@ type Metadata = {
 };
 
 export function getNotes() {
-  return getMDXData<Metadata>(path.join(process.cwd(), "src", "notes"));
+  return getMDXData<NoteMetadata>(path.join(process.cwd(), "src", "notes"));
 }
