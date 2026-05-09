@@ -9,14 +9,12 @@ const dedupeByAlbum = (tracks: TopTracks[]): TopTracks[] => {
     seen.add(track.imageUrl);
     out.push(track);
   }
-  return out;
+  return out.length % 4 === 0 ? out : out.slice(0, -(out.length % 4));
 };
 
 const SpotifyMosaic = async () => {
   const { topTracks } = await getSpotifyData();
   const tiles = dedupeByAlbum(topTracks);
-
-  console.log({ topTracks, tiles });
 
   if (tiles.length === 0) return null;
 

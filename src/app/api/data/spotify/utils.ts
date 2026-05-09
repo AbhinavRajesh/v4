@@ -10,17 +10,17 @@ export type TopTracks = {
 };
 
 const getTopTracks = async (
-  accessToken: string
+  accessToken: string,
 ): Promise<{ topTracks: TopTracks[] }> => {
   const endpoint = "https://api.spotify.com/v1/me/top/tracks?";
   try {
     const response = await fetch(
-      endpoint + stringify({ time_range: "short_term", limit: "12" }),
+      endpoint + stringify({ time_range: "medium_term" }),
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
-      }
+      },
     );
     const data = await response.json();
     const tracks = data?.items;
