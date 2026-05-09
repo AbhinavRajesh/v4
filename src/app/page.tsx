@@ -4,16 +4,23 @@ import config from "@/utils/config";
 
 const work: WorkEntry[] = [
   {
+    company: "?",
+    role: "Software Engineer II",
+    period: "May 2026 — Present",
+    tags: ["Full-time", "Hybrid"],
+    summary: <>Joining a new team as a fullstack engineer.</>,
+  },
+  {
     company: "Victoria's Secret & Co.",
     role: "Frontend Developer",
-    period: "Jun 2023 — Present",
+    period: "Jun 2023 — May 2026",
     companyUrl: "https://www.victoriassecret.com",
     tags: ["Full-time", "Remote"],
     summary: (
       <>
-        Shipping accessibility, auth, and analytics across the Victoria&apos;s
-        Secret storefront. Currently a core contributor on the architecture team
-        for the UFE (Unified Frontend Experience) initiative.
+        Shipped accessibility, auth, and analytics across the Victoria&apos;s
+        Secret storefront. Most recently a core contributor on the architecture
+        team for the UFE (Unified Frontend Experience) initiative.
       </>
     ),
     bullets: [
@@ -64,11 +71,18 @@ const work: WorkEntry[] = [
     role: "Consultant",
     period: "Feb 2026 — Apr 2026",
     companyUrl: "https://github.com",
-    tags: ["Consulting", "Remote"],
+    tags: ["Freelance", "Remote"],
     summary: (
       <>
-        Migrated the GitHub Universe 2025 codebase to build the GitHub
-        Constellation India 2026 site — a one-day developer event featuring{" "}
+        Migrated the{" "}
+        <AccentLink href="https://githubuniverse.com">
+          GitHub Universe 2025
+        </AccentLink>{" "}
+        codebase to build the{" "}
+        <AccentLink href="https://githubconstellation.com">
+          GitHub Constellation India 2026
+        </AccentLink>{" "}
+        site — a one-day developer event featuring{" "}
         <span className="text-foreground">
           Jay Parikh (EVP, Core AI at Microsoft)
         </span>{" "}
@@ -102,12 +116,15 @@ const work: WorkEntry[] = [
     role: "Consultant",
     period: "Jan 2024 — Oct 2024",
     companyUrl: "https://github.com",
-    tags: ["Consulting", "Remote"],
+    tags: ["Freelance", "Remote"],
     summary: (
       <>
-        Led the design and development of GitHub Constellation India 2024 —
-        India&apos;s largest open-source developer conference, with a keynote by{" "}
-        <span className="text-foreground">GitHub CEO Thomas Dohmke</span>.
+        Led the design and development of{" "}
+        <AccentLink href="https://githubconstellation.com">
+          GitHub Constellation India 2024
+        </AccentLink>{" "}
+        — India&apos;s largest open-source developer conference, with a keynote
+        by <span className="text-foreground">GitHub CEO Thomas Dohmke</span>.
       </>
     ),
     bullets: [
@@ -235,7 +252,7 @@ const Home = () => {
           <span className="font-mono text-xs text-muted">Kochi, IN</span>
         </div>
         <p className="leading-7 text-foreground">
-          Frontend developer based in India, currently at{" "}
+          Software engineer based in India, most recently at{" "}
           <AccentLink href="https://www.victoriassecret.com">
             Victoria&apos;s Secret & Co
           </AccentLink>
