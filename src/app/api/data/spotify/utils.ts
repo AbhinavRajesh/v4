@@ -15,7 +15,7 @@ const getTopTracks = async (
   const endpoint = "https://api.spotify.com/v1/me/top/tracks?";
   try {
     const response = await fetch(
-      endpoint + stringify({ time_range: "medium_term" }),
+      endpoint + stringify({ time_range: "short_term" }),
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
