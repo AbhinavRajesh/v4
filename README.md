@@ -28,23 +28,10 @@ yarn build
 
 ### Environment variables
 
-Create `.env.local` with:
+Copy `.env.example` to `.env.local` and fill in the values:
 
-```
-# Spotify "Recently on repeat" mosaic
-SPOTIFY_CLIENT_ID=
-SPOTIFY_CLIENT_SECRET=
-SPOTIFY_REDIRECT_URI=
-
-# Gates the internal /api/data/spotify route
-API_KEY=
-
-# Cache for Spotify responses
-REDIS_URL=
-
-# Optional analytics
-NEXT_PUBLIC_GA_ID=
-NEXT_PUBLIC_APP_URL=
+```bash
+cp .env.example .env.local
 ```
 
 ## Project layout
@@ -59,6 +46,3 @@ src/
   utils/          Site config and shared helpers
 ```
 
-## Credits
-
-Visual direction inspired by [chanhdai.com](https://chanhdai.com) ([source](https://github.com/ncdai/chanhdai.com)).
