@@ -79,6 +79,12 @@ export function CustomMDX(props: any) {
     <MDXRemote
       {...props}
       components={{ ...components, ...(props.components || {}) }}
+      options={{
+        ...(props.options || {}),
+        // Author-owned MDX — allow JS expressions (e.g. <Table data={{...}} />).
+        // next-mdx-remote v6 blocks them by default.
+        blockJS: false,
+      }}
     />
   );
 }

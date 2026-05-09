@@ -61,7 +61,7 @@ export async function generateMetadata({
 }
 
 const styles = {
-  default: "prose dark:prose-invert font-sans prose-pre:leading-none",
+  default: "prose dark:prose-invert font-sans prose-pre:leading-relaxed",
   anchor:
     "prose-a:text-accent prose-a:font-semibold prose-a:dark:font-medium prose-a:underline prose-a:hover:text-accent/80 prose-a:transition-all prose-a:duration-150 prose-a:ease-in-out prose-a:underline-offset-4",
 };
