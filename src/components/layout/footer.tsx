@@ -1,6 +1,6 @@
-import config from "@/utils/config";
-import Socials from "@/components/socials";
-import ThemeToggle from "@/components/theme-toggle";
+import config from "@/lib/site-config";
+import Socials from "@/components/ui/socials";
+import ThemeToggle from "@/components/ui/theme-toggle";
 
 const Footer = () => {
   return (

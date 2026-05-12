@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import IORedis from "ioredis";
-import { getTopTracks } from "@/app/api/data/spotify/utils";
+import { getTopTracks } from "@/app/api/spotify/utils";
 
 export async function GET(request: NextRequest) {
   console.log("Spotify data API request received");

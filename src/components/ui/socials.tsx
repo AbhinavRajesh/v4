@@ -1,4 +1,4 @@
-import config from "@/utils/config";
+import config from "@/lib/site-config";
 import { Github, Linkedin, Mail, Twitter } from "lucide-react";
 
 const socials = [

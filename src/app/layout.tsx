@@ -6,9 +6,9 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import "./globals.css";
 
-import config from "@/utils/config";
-import Nav from "@/components/nav";
-import Footer from "@/components/footer";
+import config from "@/lib/site-config";
+import Nav from "@/components/layout/nav";
+import Footer from "@/components/layout/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

@@ -1,5 +1,5 @@
 import { ChevronDown } from "lucide-react";
-import AccentLink from "@/components/accent-link";
+import AccentLink from "@/components/ui/accent-link";
 
 export type WorkEntry = {
   company: string;

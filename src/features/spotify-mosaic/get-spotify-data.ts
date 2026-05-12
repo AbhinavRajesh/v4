@@ -1,4 +1,4 @@
-import type { TopTracks } from "@/app/api/data/spotify/utils";
+import type { TopTracks } from "@/app/api/spotify/utils";
 
 export type { TopTracks };
 
@@ -11,7 +11,7 @@ type SpotifyData = { topTracks: TopTracks[] };
 
 export const getSpotifyData = async (): Promise<SpotifyData> => {
   try {
-    const response = await fetch(`${APP_URL}/api/data/spotify`, {
+    const response = await fetch(`${APP_URL}/api/spotify`, {
       headers: { api_key: process.env.API_KEY as string },
       next: { revalidate: 60 * 60 * 12 },
     });

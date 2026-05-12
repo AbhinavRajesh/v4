@@ -2,9 +2,8 @@
 /* eslint-disable @next/next/no-img-element */
 
 import Link from "next/link";
-import { MDXRemote } from "next-mdx-remote/rsc";
 import { highlight } from "sugar-high";
-import Socials from "@/components/socials";
+import Socials from "@/components/ui/socials";
 
 const Anchor = (props: any) => {
   const href: string = props.href ?? "";
@@ -79,7 +78,7 @@ const Table = ({
   </div>
 );
 
-const components = {
+export const components = {
   a: Anchor,
   code: Code,
   Image,
@@ -92,7 +91,9 @@ const components = {
   h3: (props: any) => (
     <h3 className="mt-8 mb-2 text-base font-semibold" {...props} />
   ),
-  p: (props: any) => <p className="my-4 leading-7 text-foreground" {...props} />,
+  p: (props: any) => (
+    <p className="my-4 leading-7 text-foreground" {...props} />
+  ),
   ul: (props: any) => (
     <ul className="my-4 list-disc space-y-1 pl-5" {...props} />
   ),
@@ -107,17 +108,4 @@ const components = {
     />
   ),
   hr: () => <hr className="my-10 border-subtle" />,
-};
-
-export const Mdx = (props: any) => {
-  return (
-    <MDXRemote
-      {...props}
-      components={{ ...components, ...(props.components || {}) }}
-      options={{
-        ...(props.options || {}),
-        blockJS: false,
-      }}
-    />
-  );
 };
