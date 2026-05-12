@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { baseUrl } from "@/app/sitemap";
 import { getProjects } from "@/content";
 import ContentPage from "@/features/mdx/content-page";
-import AccentLink from "@/components/ui/accent-link";
+import ProjectHeader from "@/features/mdx/project-header";
 
 export async function generateStaticParams() {
   const projects = await getProjects();
@@ -42,9 +42,6 @@ export async function generateMetadata({
   };
 }
 
-const displayUrl = (url: string) =>
-  url.replace(/^https?:\/\//, "").replace(/\/$/, "");
-
 const Project = async ({
   params,
 }: {
@@ -60,22 +57,12 @@ const Project = async ({
   return (
     <ContentPage
       header={
-        <>
-          <h1 className="text-2xl font-medium tracking-tight">{title}</h1>
-          {tagline && <p className="text-sm text-muted">{tagline}</p>}
-          {(github_repo || live_url) && (
-            <p className="flex flex-wrap gap-x-3 gap-y-1 font-mono text-xs">
-              {github_repo && (
-                <AccentLink href={`https://github.com/${github_repo}`}>
-                  github.com/{github_repo}
-                </AccentLink>
-              )}
-              {live_url && (
-                <AccentLink href={live_url}>{displayUrl(live_url)}</AccentLink>
-              )}
-            </p>
-          )}
-        </>
+        <ProjectHeader
+          title={title}
+          tagline={tagline}
+          github_repo={github_repo}
+          live_url={live_url}
+        />
       }
       source={project.mdxSource.content}
     />

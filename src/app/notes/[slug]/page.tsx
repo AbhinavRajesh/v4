@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { getNotes } from "@/content";
 import { baseUrl } from "@/app/sitemap";
 import ContentPage from "@/features/mdx/content-page";
-import { formatDate } from "@/features/mdx/format-date";
+import NoteHeader from "@/features/mdx/note-header";
 
 export async function generateStaticParams() {
   const posts = await getNotes();
@@ -71,14 +71,7 @@ const Note = async ({
         url: `${baseUrl}/notes/${post.slug}`,
         author: { "@type": "Person", name: "Abhinav Rajesh" },
       }}
-      header={
-        <>
-          <h1 className="text-2xl font-medium tracking-tight">{title}</h1>
-          <p className="font-mono text-xs text-muted">
-            {formatDate(publishedAt)}
-          </p>
-        </>
-      }
+      header={<NoteHeader title={title} publishedAt={publishedAt} />}
       source={post.mdxSource.content}
     />
   );
