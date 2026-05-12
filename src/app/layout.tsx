@@ -30,6 +30,7 @@ export const metadata: Metadata = {
   alternates: {
     types: {
       "text/plain": "/llms.txt",
+      "application/rss+xml": "/rss.xml",
     },
   },
 };
