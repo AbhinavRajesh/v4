@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { getNotes } from "@/app/notes/utils";
 import { baseUrl } from "@/app/sitemap";
-import { Mdx } from "@/features/mdx/mdx";
+import ContentPage from "@/features/mdx/content-page";
 import { formatDate } from "@/features/mdx/format-date";
 
 export async function generateStaticParams() {
@@ -57,36 +57,30 @@ const Note = async ({
   const post = (await getNotes()).find((p) => p.slug === slug);
   if (!post) notFound();
 
+  const { title, publishedAt, summary } = post.mdxSource.frontmatter;
+
   return (
-    <article className="space-y-8">
-      <script
-        type="application/ld+json"
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            headline: post.mdxSource.frontmatter.title,
-            datePublished: post.mdxSource.frontmatter.publishedAt,
-            dateModified: post.mdxSource.frontmatter.publishedAt,
-            description: post.mdxSource.frontmatter.summary,
-            url: `${baseUrl}/notes/${post.slug}`,
-            author: { "@type": "Person", name: "Abhinav Rajesh" },
-          }),
-        }}
-      />
-      <header className="space-y-2">
-        <h1 className="text-2xl font-medium tracking-tight">
-          {post.mdxSource.frontmatter.title}
-        </h1>
-        <p className="font-mono text-xs text-muted">
-          {formatDate(post.mdxSource.frontmatter.publishedAt)}
-        </p>
-      </header>
-      <div className="text-foreground">
-        <Mdx source={post.mdxSource.content} />
-      </div>
-    </article>
+    <ContentPage
+      jsonLd={{
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: title,
+        datePublished: publishedAt,
+        dateModified: publishedAt,
+        description: summary,
+        url: `${baseUrl}/notes/${post.slug}`,
+        author: { "@type": "Person", name: "Abhinav Rajesh" },
+      }}
+      header={
+        <>
+          <h1 className="text-2xl font-medium tracking-tight">{title}</h1>
+          <p className="font-mono text-xs text-muted">
+            {formatDate(publishedAt)}
+          </p>
+        </>
+      }
+      source={post.mdxSource.content}
+    />
   );
 };
 
