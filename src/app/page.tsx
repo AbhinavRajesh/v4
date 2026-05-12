@@ -1,4 +1,4 @@
-import AccentLink from "@/components/accent-link";
+import AccentLink from "@/components/ui/accent-link";
 import WorkList from "@/components/work-list";
 import config from "@/utils/config";
 import { work } from "@/content/work";

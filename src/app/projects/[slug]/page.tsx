@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { baseUrl } from "@/app/sitemap";
 import { Mdx } from "@/components/mdx";
 import { getProjects } from "@/app/projects/utils";
-import AccentLink from "@/components/accent-link";
+import AccentLink from "@/components/ui/accent-link";
 
 export async function generateStaticParams() {
   const projects = await getProjects();

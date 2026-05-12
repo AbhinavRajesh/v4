@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Metadata } from "next";
 import { getNotes } from "@/app/notes/utils";
 import { formatDate } from "@/utils";
-import AccentLink from "@/components/accent-link";
+import AccentLink from "@/components/ui/accent-link";
 
 export const metadata: Metadata = {
   title: "Notes",

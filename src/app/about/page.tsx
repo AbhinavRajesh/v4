@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { Metadata } from "next";
-import AccentLink from "@/components/accent-link";
+import AccentLink from "@/components/ui/accent-link";
 import SpotifyMosaic from "@/components/spotify-mosaic";
 import config from "@/utils/config";
 

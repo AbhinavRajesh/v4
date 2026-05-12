@@ -1,4 +1,4 @@
-import AccentLink from "@/components/accent-link";
+import AccentLink from "@/components/ui/accent-link";
 import type { WorkEntry } from "@/components/work-list";
 
 export const work: WorkEntry[] = [

@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { highlight } from "sugar-high";
-import Socials from "@/components/socials";
+import Socials from "@/components/ui/socials";
 
 const Anchor = (props: any) => {
   const href: string = props.href ?? "";
