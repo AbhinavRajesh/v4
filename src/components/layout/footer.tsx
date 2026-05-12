@@ -1,4 +1,4 @@
-import config from "@/utils/config";
+import config from "@/lib/site-config";
 import Socials from "@/components/ui/socials";
 import ThemeToggle from "@/components/ui/theme-toggle";
 

@@ -1,6 +1,6 @@
 import AccentLink from "@/components/ui/accent-link";
 import WorkList from "@/features/work-list/work-list";
-import config from "@/utils/config";
+import config from "@/lib/site-config";
 import { work } from "@/content/work";
 import { education } from "@/content/education";
 import { stack } from "@/content/stack";
