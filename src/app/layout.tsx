@@ -27,6 +27,20 @@ export const metadata: Metadata = {
     default: `${config.userData.name} — ${config.userData.description}`,
   },
   description: config.userData.description,
+  openGraph: {
+    title: config.userData.name,
+    description: config.userData.description,
+    url: "/",
+    siteName: config.userData.name,
+    images: [{ url: "/og", width: 1200, height: 630 }],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: config.userData.name,
+    description: config.userData.description,
+    images: ["/og"],
+  },
   alternates: {
     types: {
       "text/plain": "/llms.txt",
