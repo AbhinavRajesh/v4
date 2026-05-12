@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { baseUrl } from "@/app/sitemap";
-import { Mdx } from "@/components/mdx";
+import { Mdx } from "@/features/mdx/mdx";
 import { getProjects } from "@/app/projects/utils";
 import AccentLink from "@/components/ui/accent-link";
 

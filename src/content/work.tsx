@@ -1,5 +1,5 @@
 import AccentLink from "@/components/ui/accent-link";
-import type { WorkEntry } from "@/components/work-list";
+import type { WorkEntry } from "@/features/work-list/work-list";
 
 export const work: WorkEntry[] = [
   {

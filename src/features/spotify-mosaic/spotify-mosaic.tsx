@@ -1,5 +1,8 @@
 import Image from "next/image";
-import { getSpotifyData, type TopTracks } from "@/lib/spotify";
+import {
+  getSpotifyData,
+  type TopTracks,
+} from "@/features/spotify-mosaic/get-spotify-data";
 
 const dedupeByAlbum = (tracks: TopTracks[]): TopTracks[] => {
   const seen = new Set<string>();

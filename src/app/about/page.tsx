@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { Metadata } from "next";
 import AccentLink from "@/components/ui/accent-link";
-import SpotifyMosaic from "@/components/spotify-mosaic";
+import SpotifyMosaic from "@/features/spotify-mosaic/spotify-mosaic";
 import config from "@/utils/config";
 
 export const metadata: Metadata = {

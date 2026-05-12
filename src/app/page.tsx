@@ -1,5 +1,5 @@
 import AccentLink from "@/components/ui/accent-link";
-import WorkList from "@/components/work-list";
+import WorkList from "@/features/work-list/work-list";
 import config from "@/utils/config";
 import { work } from "@/content/work";
 import { education } from "@/content/education";
