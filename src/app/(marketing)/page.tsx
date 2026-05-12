@@ -24,7 +24,10 @@ const Home = () => {
           experiences — clean UIs backed by solid code.
         </p>
         <p className="font-mono text-xs text-muted">
-          <span className="animate-status-pulse mr-1.5 inline-block h-1.5 w-1.5 translate-y-[-1px] rounded-full bg-emerald-500 align-middle" />
+          <span className="relative mr-1.5 inline-flex h-1.5 w-1.5 -translate-y-px align-middle">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75 motion-reduce:hidden" />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
+          </span>
           available for freelance & consulting
         </p>
       </header>
@@ -33,13 +36,15 @@ const Home = () => {
         <h2 className="font-mono text-xs uppercase tracking-wider text-muted">
           Experience
         </h2>
-        <p className="text-sm text-muted">
-          Tap a row to expand. Tap the company name to visit their site.{" "}
-          <AccentLink href="https://drive.google.com/file/d/1JfuaeO1OjC9YX4PWDryFwZJrrZIPBaaO/view?usp=sharing">
+        <p className="text-sm">
+          <AccentLink
+            className="text-sm"
+            href="https://drive.google.com/file/d/1JfuaeO1OjC9YX4PWDryFwZJrrZIPBaaO/view?usp=sharing"
+          >
             Resume
           </AccentLink>
-          .
         </p>
+        <p className="text-xs italic text-muted">Tap a row to expand.</p>
         <WorkList entries={work} />
       </section>
 

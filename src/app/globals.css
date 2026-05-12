@@ -58,25 +58,6 @@ details[open]::details-content {
   }
 }
 
-@keyframes status-pulse {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgb(16 185 129 / 0.5);
-  }
-  70% {
-    box-shadow: 0 0 0 5px rgb(16 185 129 / 0);
-  }
-}
-
-.animate-status-pulse {
-  animation: status-pulse 2.4s ease-out infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-status-pulse {
-    animation: none;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
