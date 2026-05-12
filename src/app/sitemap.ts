@@ -1,5 +1,4 @@
-import { getNotes } from "@/app/notes/utils";
-import { getProjects } from "./projects/utils";
+import { getNotes, getProjects } from "@/content";
 
 export const baseUrl = "https://www.abhinavrajesh.com";
 

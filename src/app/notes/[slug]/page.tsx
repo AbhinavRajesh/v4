@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getNotes } from "@/app/notes/utils";
+import { getNotes } from "@/content";
 import { baseUrl } from "@/app/sitemap";
 import ContentPage from "@/features/mdx/content-page";
 import { formatDate } from "@/features/mdx/format-date";

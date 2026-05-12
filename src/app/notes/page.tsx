@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Metadata } from "next";
-import { getNotes } from "@/app/notes/utils";
+import { getNotes } from "@/content";
 import { formatDate } from "@/features/mdx/format-date";
 import AccentLink from "@/components/ui/accent-link";
 
