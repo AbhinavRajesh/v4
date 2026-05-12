@@ -40,78 +40,83 @@ There are no tests in this repo. Don't claim "tests pass" — say so explicitly 
 - **No `any` outside `mdx.tsx`.** That file is the documented exception (next-mdx-remote component props). New code must be typed.
 - **Frontend changes need browser verification.** Type-checking and lint are not enough — run `yarn dev` and exercise the affected page before reporting done.
 
-## Current directory layout
+## Directory layout
 
 ```
 src/
-  app/                       App Router
-    layout.tsx               root layout, fonts, analytics, theme bootstrap script
-    page.tsx                 home — hardcoded work/education/stack arrays
-    globals.css              Tailwind v4 entry, CSS vars, theme tokens, animations
-    sitemap.ts               exports baseUrl; aggregates notes + projects
+  app/                          routes only — pages, layouts, route handlers
+    layout.tsx                  root layout, fonts, analytics, theme bootstrap script
+    globals.css                 Tailwind v4 entry, CSS vars, theme tokens, animations
+    sitemap.ts                  exports baseUrl; aggregates notes + projects
     robots.ts
-    og/route.tsx             dynamic OG image generator
     instrumentation-client.ts
-    about/page.tsx
+    og/route.tsx                dynamic OG image generator
+    (marketing)/                route group — non-URL-affecting
+      page.tsx                  home (composes data from @/content)
+      about/page.tsx
     notes/
-      page.tsx               index
-      utils.ts               getNotes() + NoteMetadata type
-      [slug]/page.tsx        renders MDX
+      page.tsx                  index
+      [slug]/page.tsx           renders MDX via <ContentPage>
     projects/
       page.tsx
-      utils.ts               getProjects() + ProjectMetadata type
       [slug]/page.tsx
-    api/data/spotify/
-      route.ts               GET handler, gated by API_KEY header
-      utils.ts               getTopTracks() + TopTracks type
+    api/spotify/
+      route.ts                  GET handler, gated by API_KEY header
+      utils.ts                  getTopTracks() + TopTracks type (wire format)
 
-  components/                flat, lowercase, kebab-case filenames
-    nav.tsx                  client
-    footer.tsx               server
-    theme-toggle.tsx         client
-    socials.tsx              server
-    accent-link.tsx          server, handles internal vs external
-    work-list.tsx            server, exports WorkEntry type
-    spotify-mosaic.tsx       async server component, Suspense-friendly
-    mdx.tsx                  MDX component overrides — only file with `any`
+  content/                      all authored content + its accessors
+    index.ts                    NoteMetadata, ProjectMetadata, getNotes(), getProjects()
+    notes/*.mdx                 MDX source for /notes/*
+    projects/*.mdx              MDX source for /projects/*
+    work.tsx                    WorkEntry[] (JSX in summaries/bullets)
+    education.ts                EducationEntry[]
+    stack.ts                    string[] of tech tags
 
-  notes/                     MDX source for /notes/* — frontmatter + body
-  projects/                  MDX source for /projects/* — frontmatter + body
+  features/                     feature-scoped UI + data; one folder per vertical
+    work-list/work-list.tsx     exports the WorkEntry type
+    spotify-mosaic/
+      spotify-mosaic.tsx        async server component, Suspense-friendly
+      get-spotify-data.ts       client of the internal /api/spotify route
+    mdx/
+      mdx.tsx                   <Mdx> wrapper around next-mdx-remote/rsc
+      components.tsx            per-tag overrides — the only file with `any`
+      content-page.tsx          shared <article> shell for notes + projects
+      load.ts                   getMDXData / readMDXFile / getMDXFiles
+      format-date.ts
 
-  lib/                       runtime helpers consumed by components
-    spotify.ts               client of the internal /api/data/spotify route
-    utils.ts                 cn() — clsx + tailwind-merge
+  components/                   shared primitives only — nothing feature-specific
+    ui/                         accent-link, theme-toggle, socials
+    layout/                     nav, footer
 
-  utils/                     module-scoped helpers
-    index.ts                 MDX file IO, formatDate
-    config.ts                userData + analytics — site-wide config singleton
+  lib/                          cross-cutting helpers with no UI
+    cn.ts                       clsx + tailwind-merge
+    site-config.ts              userData + analytics
 ```
 
 ### Quirks worth knowing before touching things
 
-- **Two helper directories: `src/lib/` and `src/utils/`.** Not a clean split — `lib/utils.ts` has `cn()`, `utils/index.ts` has MDX IO and `formatDate`. Both legitimate but the boundary is fuzzy. See the restructure plan below.
-- **MDX content lives at `src/notes/` and `src/projects/`** (top-level), but their loaders live under `src/app/notes/utils.ts` and `src/app/projects/utils.ts`. Keep this in mind when grepping for frontmatter types.
-- **`src/app/page.tsx` is ~325 lines** with `work[]`, `education[]`, and `stack[]` arrays inline. Treat that file as a content file, not a component — when adding/editing entries, don't refactor surrounding JSX unless asked.
 - **The home page's "Experience" `WorkList` uses native `<details name="experience">`** for exclusive-open accordion behavior. Animation depends on `::details-content` and `interpolate-size: allow-keywords` in `globals.css`. Don't replace with a JS accordion — it will regress accessibility and the no-JS path.
 - **Theme** is bootstrapped via inline script in `layout.tsx` (no-flash on first paint). `data-theme` attribute on `<html>` overrides `prefers-color-scheme`. `ThemeToggle` writes to `localStorage` + the attribute. Don't add a theme provider — the current model has zero hydration cost.
-- **Spotify route is self-gated** via `API_KEY` header. `getSpotifyData()` in `src/lib/spotify.ts` calls its own origin with that header. The `APP_URL` constant there is hardcoded to production — verify before changing the production hostname.
-- **`src/components/mdx.tsx`** disables `@typescript-eslint/no-explicit-any` at file scope. Intentional. Don't try to "fix" it — the next-mdx-remote component map is genuinely `any`-shaped.
+- **Spotify route is self-gated** via `API_KEY` header. `getSpotifyData()` in `features/spotify-mosaic/get-spotify-data.ts` calls its own origin (`/api/spotify`) with that header. The `APP_URL` constant there is hardcoded to production — verify before changing the production hostname.
+- **`src/features/mdx/components.tsx`** disables `@typescript-eslint/no-explicit-any` at file scope. Intentional. Don't try to "fix" it — the next-mdx-remote component map is genuinely `any`-shaped. `mdx.tsx` (the wrapper) carries the same disable for the same reason.
+- **`src/content/index.ts` uses `fs`/`path` at module load** (Node only). It's only imported from server components and route handlers — don't import it from anything marked `"use client"`.
+- **`work.tsx` lives in `content/` despite having JSX.** It's data, not a component — the JSX is just embedded React fragments inside summaries and bullets, and it consumes `<AccentLink>`. Treat it as a content file when editing; don't extract sub-components.
 
 ## Tailwind v4 + styling conventions
 
 - **No `tailwind.config.*` file.** All theming lives in `src/app/globals.css` via `@theme inline { ... }`.
 - **Design tokens are CSS variables** on `:root`, swapped under `[data-theme="dark"]` and the `prefers-color-scheme: dark` media query. Token names: `--background`, `--foreground`, `--muted`, `--subtle`, `--accent`. Exposed to Tailwind as `bg-background`, `text-foreground`, `border-subtle`, `text-accent`, etc.
 - **Fonts**: `Geist` (sans) and `Geist_Mono` via `next/font/google`. Use Tailwind's `font-sans` / `font-mono`. Mono is the visual convention for metadata, captions, periods, tags.
-- **Class composition**: use `cn()` from `@/lib/utils`. It runs `clsx` then `tailwind-merge` — order matters when conditional classes override defaults.
+- **Class composition**: use `cn()` from `@/lib/cn`. It runs `clsx` then `tailwind-merge` — order matters when conditional classes override defaults.
 - **Type scale & spacing**: small, dense, generous line-height. Headings stay close to body size (`text-xl` / `text-2xl`); meta uses `text-xs` mono uppercase tracking-wider. Don't introduce a new size without checking the existing pages.
 - **Accessibility is non-negotiable.** Skip-to-main-content link, `scrollbar-gutter: stable`, `prefers-reduced-motion` honored on every animation, `aria-label` on icon-only buttons. Preserve these patterns.
 - **Color usage**: `text-foreground` for emphasis, `text-muted` for body in secondary blocks, `text-subtle` only for hairlines/dividers, `text-accent` only for links. Don't introduce raw hex outside `globals.css`.
 
 ## MDX content authoring
 
-### Notes (`src/notes/*.mdx`)
+### Notes (`src/content/notes/*.mdx`)
 
-Frontmatter type lives at `src/app/notes/utils.ts` as `NoteMetadata`:
+Frontmatter type lives at `src/content/index.ts` as `NoteMetadata`:
 
 ```yaml
 ---
@@ -124,9 +129,9 @@ image?: string             # absolute URL or /public path; used for OG
 
 Filename becomes the slug. `getNotes()` reads the directory at request time (no build-time index). `generateStaticParams` in `src/app/notes/[slug]/page.tsx` produces routes.
 
-### Projects (`src/projects/*.mdx`)
+### Projects (`src/content/projects/*.mdx`)
 
-Frontmatter type at `src/app/projects/utils.ts` as `ProjectMetadata`:
+Frontmatter type at `src/content/index.ts` as `ProjectMetadata`:
 
 ```yaml
 ---
@@ -148,7 +153,7 @@ The project page header auto-renders `github_repo` and `live_url` as links — d
 
 ### MDX components available in content
 
-Defined in `src/components/mdx.tsx`. Anchor, code (syntax-highlighted via `sugar-high`), Image, YouTube, Socials, Table, plus typography overrides (`h2`, `h3`, `p`, `ul`, `ol`, `li`, `blockquote`, `hr`). To add a new MDX-only component, add it there — don't pass `components` per-render unless the override is route-specific.
+Defined in `src/features/mdx/components.tsx`. Anchor, code (syntax-highlighted via `sugar-high`), Image, YouTube, Socials, Table, plus typography overrides (`h2`, `h3`, `p`, `ul`, `ol`, `li`, `blockquote`, `hr`). To add a new MDX-only component, add it there — don't pass `components` per-render unless the override is route-specific.
 
 ## Deployment & environment
 
@@ -158,10 +163,10 @@ Copy `.env.example` to `.env.local`. Production values live in Vercel.
 
 | Var | Required for | Notes |
 |---|---|---|
-| `SPOTIFY_CLIENT_ID` | `/api/data/spotify` | From the Spotify developer dashboard |
-| `SPOTIFY_CLIENT_SECRET` | `/api/data/spotify` | Same |
-| `REDIS_URL` | `/api/data/spotify` | Caches access/refresh tokens — any Redis-compatible URL |
-| `API_KEY` | `/api/data/spotify` | Shared secret; `getSpotifyData()` sends it as the `api_key` header |
+| `SPOTIFY_CLIENT_ID` | `/api/spotify` | From the Spotify developer dashboard |
+| `SPOTIFY_CLIENT_SECRET` | `/api/spotify` | Same |
+| `REDIS_URL` | `/api/spotify` | Caches access/refresh tokens — any Redis-compatible URL |
+| `API_KEY` | `/api/spotify` | Shared secret; `getSpotifyData()` sends it as the `api_key` header |
 | `NEXT_PUBLIC_GA_ID` | analytics | Optional; safe to leave empty in dev |
 
 Refresh tokens are seeded manually in Redis (one-time OAuth flow, outside this repo). If the mosaic stops rendering, that's the usual cause — check Redis for `spotify:refresh_token`.
@@ -176,62 +181,21 @@ Refresh tokens are seeded manually in Redis (one-time OAuth flow, outside this r
 
 The default branch for PRs is `main`. The repo currently sits on `release/v5`. Don't push to `main` directly; open a PR.
 
-## Target structure for scalability
+## Architectural principles
 
-The current layout works at today's size (~10 MDX files, ~10 components, one API route). Reach for the restructure below **only when the user asks to scale this up** — don't preemptively refactor.
+These rules govern where new code goes. They survived the restructure — apply them when extending the codebase.
 
-When the user does ask to restructure, propose this as the target and migrate incrementally:
-
-```
-src/
-  app/                       routes only — pages, layouts, route handlers, sitemap, robots, og
-    (marketing)/             route group for home, about
-    notes/[slug]/page.tsx
-    projects/[slug]/page.tsx
-    api/spotify/route.ts     drop the /data/ segment — only one consumer
-
-  content/                   all authored content (was src/notes, src/projects, and the inline arrays in app/page.tsx)
-    notes/*.mdx
-    projects/*.mdx
-    work.ts                  WorkEntry[] — extracted from app/page.tsx
-    education.ts
-    stack.ts
-    schemas.ts               NoteMetadata, ProjectMetadata — colocated with content, not with routes
-
-  features/                  feature-scoped UI + data; one folder per vertical
-    work-list/
-      work-list.tsx
-      index.ts
-    spotify-mosaic/
-      spotify-mosaic.tsx
-      get-spotify-data.ts    moved from src/lib/spotify.ts
-      types.ts
-    mdx/
-      mdx.tsx
-      components.tsx         the per-tag overrides, separate from <Mdx>
-      load.ts                getMDXData, readMDXFile, getMDXFiles
-      format-date.ts
-
-  components/                shared primitives only — nothing feature-specific
-    ui/                      accent-link, theme-toggle, socials
-    layout/                  nav, footer
-
-  lib/                       cross-cutting helpers with no UI
-    cn.ts                    was lib/utils.ts
-    site-config.ts           was utils/config.ts
-    env.ts                   new — runtime-validated env (zod or a tiny hand-rolled guard)
-```
-
-### Migration principles
-
-- **One concept per file.** `WorkEntry` should live next to `work-list.tsx`, not be re-exported. Frontmatter types should live in `content/schemas.ts`, not in route `utils.ts` files.
-- **Routes are thin.** A `page.tsx` should compose feature components and read from `content/`. No 300-line page files with embedded data.
-- **`lib/` is for pure functions with no React.** `components/` is for headless/primitive UI with no domain knowledge. `features/` owns the intersection.
-- **Collapse `src/utils/` and `src/lib/`.** They drift in opposite directions. After the migration, `lib/` is the only utility bucket.
-- **Notes and projects share 95% of their `[slug]/page.tsx`.** Factor a `<ContentPage>` in `features/mdx/` that takes `{ frontmatter, content, schema }`. Keep route files under 30 lines each.
-- **Validate env at boot.** A single `lib/env.ts` that throws on missing required vars beats `process.env.X as string` scattered across files.
-
-When migrating, move files with `git mv` so blame survives, and do it one feature at a time with passing builds in between. Don't bundle a restructure into an unrelated PR.
+- **One concept per file.** `WorkEntry` lives next to `work-list.tsx`, not re-exported. Frontmatter types live in `content/index.ts`, not in route files.
+- **Routes are thin.** A `page.tsx` should compose feature components and read from `@/content`. If a route grows past ~80 lines, the new code probably belongs in `features/` or `content/`.
+- **Layer rules:**
+  - `lib/` — pure functions, no React, no domain knowledge.
+  - `components/` — shared primitives and chrome. No feature-specific logic, no data fetching.
+  - `features/` — owns the intersection of UI and domain. One folder per feature, self-contained.
+  - `content/` — authored data (MDX, arrays) plus typed accessors. Server-only (uses `fs`).
+  - `app/` — routes. Thin compositions of the above.
+- **Don't create barrel files** (`index.ts` re-export hubs) unless there's a real consolidation reason. `content/index.ts` exists because schemas + loaders belong together; `features/*/` directories don't have barrels because each feature is one or two files.
+- **Env vars are accessed inline at point of use.** Don't add a `lib/env.ts` boot-time validator — it would break static prerender of pages that don't need those vars. If env handling grows complex, revisit.
+- **Move files with `git mv`** so blame survives. Refactors land in their own PRs, one feature at a time, with passing builds between commits.
 
 ## Working defaults
 
