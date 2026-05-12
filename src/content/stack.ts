@@ -5,5 +5,4 @@ export const stack: string[] = [
   "Next.js",
   "Node.js",
   "TailwindCSS",
-  "Go",
 ];
