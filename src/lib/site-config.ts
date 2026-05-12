@@ -17,6 +17,7 @@ const analytics = {
 const config = {
   userData,
   analytics,
+  repo: "https://github.com/AbhinavRajesh/portfolio",
 };
 
 export default config;
