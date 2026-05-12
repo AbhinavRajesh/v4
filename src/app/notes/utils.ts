@@ -1,13 +1,11 @@
-import { getMDXData } from "@/utils";
 import path from "path";
+import { getMDXData } from "@/utils";
+import type { NoteMetadata } from "@/content/schemas";
 
-export type NoteMetadata = {
-  title: string;
-  publishedAt: string;
-  summary: string;
-  image?: string;
-};
+export type { NoteMetadata };
 
 export function getNotes() {
-  return getMDXData<NoteMetadata>(path.join(process.cwd(), "src", "notes"));
+  return getMDXData<NoteMetadata>(
+    path.join(process.cwd(), "src", "content", "notes"),
+  );
 }
