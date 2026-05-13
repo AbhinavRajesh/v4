@@ -15,7 +15,7 @@ Fifth iteration of my personal portfolio. Live at [abhinavrajesh.com](https://ab
 - Server-rendered experience accordion using native `<details>`/`<summary>` with smooth `::details-content` animation and exclusive open behavior
 - Skip-to-main-content link, reserved scrollbar gutter, and `prefers-reduced-motion` honored throughout
 - Light / dark theme with no flash on first paint
-- MDX-driven notes (`src/notes/`) and projects (`src/projects/`) — drop in a new `.mdx`, ship it
+- MDX-driven notes (`src/content/notes/`) and projects (`src/content/projects/`) — drop in a new `.mdx`, ship it
 
 ## Local development
 
@@ -39,10 +39,9 @@ cp .env.example .env.local
 ```
 src/
   app/            App Router pages, route handlers, sitemap, og image
-  components/     Flat, lowercase component layer (work-list, spotify-mosaic, mdx, …)
-  lib/            Data fetching helpers (spotify)
-  notes/          MDX notes
-  projects/       MDX project pages
-  utils/          Site config and shared helpers
+  content/        Authored content (MDX notes + projects) and typed accessors
+  features/       Feature-scoped UI + data (work-list, spotify-mosaic, mdx, …)
+  components/     Shared primitives (ui, layout)
+  lib/            Cross-cutting helpers with no UI
 ```
 
